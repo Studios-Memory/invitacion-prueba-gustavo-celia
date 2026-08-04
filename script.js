@@ -618,7 +618,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================
     */
 
-    const numeroWhatsApp = "59175656130";
+    const numeroWhatsApp = "59168877022";
 
 
     /*
