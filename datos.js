@@ -44,7 +44,7 @@ padres: {
 
   imagenes: {
     portada: "img/portada1.jpg",
-    vistaPrevia: "img/preview.jpg",
+    vistaPrevia: "img/preview1.jpg",
 
     galeria: [
         "img/im8.jpg",
