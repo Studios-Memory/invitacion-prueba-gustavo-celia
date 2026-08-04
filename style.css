@@ -1,0 +1,8574 @@
+/* ==============================
+   CONFIGURACIÓN GENERAL
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Cormorant Garamond", serif;
+    background: #f5f0e9;
+    color: #755943;
+}
+
+body.pagina-bloqueada {
+    overflow: hidden;
+}
+
+
+/* ==============================
+   PORTADA DEL SOBRE
+================================ */
+
+.portada-sobre {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background: #eee8e0;
+    overflow: hidden;
+    perspective: 1400px;
+    z-index: 1000;
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+.portada-sobre.oculta {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.sobre {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+/* ==============================
+   SOLAPA SUPERIOR ESTAMPADA
+================================ */
+
+.solapa-superior {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 54%;
+    z-index: 5;
+
+    background-color: #f9f8f5;
+
+    background-image:
+        radial-gradient(
+            circle at 25px 25px,
+            transparent 17px,
+            rgba(180, 173, 163, 0.22) 18px,
+            rgba(255, 255, 255, 0.9) 20px,
+            transparent 22px
+        ),
+        radial-gradient(
+            circle at 75px 75px,
+            transparent 18px,
+            rgba(177, 169, 159, 0.18) 19px,
+            rgba(255, 255, 255, 0.85) 21px,
+            transparent 23px
+        );
+
+    background-size: 100px 100px;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    transform-origin: top center;
+
+    filter:
+        drop-shadow(0 10px 10px rgba(73, 58, 47, 0.17));
+
+    transition:
+        transform 1.25s cubic-bezier(0.65, 0, 0.35, 1),
+        opacity 0.7s ease;
+}
+
+
+/* ==============================
+   PLIEGUES DEL SOBRE
+================================ */
+
+.pliegue {
+    position: absolute;
+    bottom: 0;
+    width: 58%;
+    height: 75%;
+    background:
+        linear-gradient(
+            145deg,
+            #ded5cb,
+            #f5f0e9 42%,
+            #e8e0d7
+        );
+    z-index: 2;
+}
+
+.pliegue-izquierdo {
+    left: 0;
+
+    clip-path: polygon(
+        0 0,
+        100% 55%,
+        0 100%
+    );
+
+    filter:
+        drop-shadow(8px 0 8px rgba(82, 65, 52, 0.1));
+}
+
+.pliegue-derecho {
+    right: 0;
+
+    clip-path: polygon(
+        100% 0,
+        0 55%,
+        100% 100%
+    );
+
+    filter:
+        drop-shadow(-8px 0 8px rgba(82, 65, 52, 0.1));
+}
+
+.pliegue-inferior {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.72),
+            #eee8e1
+        );
+
+    clip-path: polygon(
+        0 100%,
+        50% 22%,
+        100% 100%
+    );
+
+    z-index: 3;
+
+    filter:
+        drop-shadow(0 -8px 8px rgba(82, 65, 52, 0.09));
+}
+
+
+/* ==============================
+   SELLO
+================================ */
+
+.sello {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+
+    width: 92px;
+    height: 92px;
+
+    border: 4px double rgba(99, 61, 25, 0.55);
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle at 35% 28%,
+            #e0ad62,
+            #a76628 52%,
+            #754116 100%
+        );
+
+    box-shadow:
+        0 8px 18px rgba(74, 43, 19, 0.35),
+        inset 0 3px 4px rgba(255, 226, 174, 0.55),
+        inset 0 -4px 7px rgba(77, 39, 10, 0.45);
+
+    color: #704118;
+
+    cursor: pointer;
+    z-index: 10;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        opacity 0.5s ease;
+}
+
+.sello::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+
+    border: 1px solid rgba(83, 46, 17, 0.45);
+    border-radius: 50%;
+}
+
+.sello span {
+    position: relative;
+    font-family: "Great Vibes", cursive;
+    font-size: 27px;
+    color: #613713;
+    z-index: 2;
+}
+
+.sello:hover {
+    transform:
+        translate(-50%, -50%)
+        scale(1.09);
+
+    box-shadow:
+        0 12px 25px rgba(74, 43, 19, 0.4),
+        inset 0 3px 4px rgba(255, 226, 174, 0.55),
+        inset 0 -4px 7px rgba(77, 39, 10, 0.45);
+}
+
+.sello:active {
+    transform:
+        translate(-50%, -50%)
+        scale(0.96);
+}
+
+
+/* ==============================
+   TEXTO DE LA PORTADA
+================================ */
+
+.texto-portada {
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    width: min(90%, 700px);
+
+    transform: translateX(-50%);
+
+    text-align: center;
+    color: #8a674e;
+    z-index: 9;
+
+    transition:
+        opacity 0.45s ease,
+        transform 0.7s ease;
+}
+
+.instruccion {
+    font-size: clamp(16px, 2vw, 21px);
+    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+.atentamente {
+    margin-top: 20px;
+    font-size: clamp(16px, 2vw, 20px);
+}
+
+.texto-portada h1 {
+    margin-top: 18px;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(48px, 7vw, 82px);
+    font-weight: 400;
+    line-height: 1;
+
+    color: #9b755c;
+}
+
+
+/* ==============================
+   ANIMACIÓN AL ABRIR
+================================ */
+
+.portada-sobre.abierta .solapa-superior {
+    transform: rotateX(180deg) translateY(-10%);
+    opacity: 0.25;
+}
+
+.portada-sobre.abierta .sello {
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    opacity: 0;
+}
+
+.portada-sobre.abierta .texto-portada {
+    opacity: 0;
+    transform:
+        translateX(-50%)
+        translateY(50px);
+}
+
+
+/* ==============================
+   CONTENIDO DE LA INVITACIÓN
+================================ */
+
+.contenido-invitacion {
+    min-height: 100vh;
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.contenido-invitacion.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bienvenida {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 25px;
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(255, 252, 248, 0.94),
+            rgba(241, 233, 223, 0.97)
+        );
+}
+
+.texto-pequeno {
+    font-size: 15px;
+    letter-spacing: 4px;
+}
+
+.bienvenida h2 {
+    margin: 25px 0;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(60px, 10vw, 105px);
+    font-weight: 400;
+
+    color: #926d54;
+}
+
+.mensaje {
+    max-width: 650px;
+    font-size: clamp(20px, 3vw, 27px);
+    line-height: 1.5;
+}
+
+
+/* ==============================
+   DISEÑO PARA CELULAR
+================================ */
+
+@media (max-width: 600px) {
+
+    .solapa-superior {
+        height: 46%;
+    }
+
+    .sello {
+        top: 43%;
+        width: 78px;
+        height: 78px;
+    }
+
+    .sello span {
+        font-size: 23px;
+    }
+
+    .texto-portada {
+        top: 51%;
+        width: 92%;
+    }
+
+    .instruccion {
+        font-size: 15px;
+    }
+
+    .atentamente {
+        margin-top: 16px;
+        font-size: 16px;
+    }
+
+    .texto-portada h1 {
+        margin-top: 14px;
+        font-size: 49px;
+    }
+
+}
+
+/* ==============================
+   BOTÓN DE MÚSICA
+================================ */
+
+.control-musica {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #e9dccb;
+    color: #9a7458;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 6px 18px rgba(76, 55, 39, 0.2),
+        inset 0 1px 2px rgba(255, 255, 255, 0.7);
+
+    cursor: pointer;
+    z-index: 950;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px) scale(0.9);
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease,
+        transform 0.4s ease,
+        background 0.3s ease;
+}
+
+.control-musica.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.control-musica:hover {
+    background: #dfcfbb;
+    transform: scale(1.08);
+}
+
+.control-musica:active {
+    transform: scale(0.94);
+}
+
+.control-musica.reproduciendo {
+    animation: pulso-musica 2s infinite;
+}
+
+@keyframes pulso-musica {
+    0%,
+    100% {
+        box-shadow:
+            0 6px 18px rgba(76, 55, 39, 0.2),
+            0 0 0 0 rgba(154, 116, 88, 0.25);
+    }
+
+    50% {
+        box-shadow:
+            0 6px 18px rgba(76, 55, 39, 0.2),
+            0 0 0 9px rgba(154, 116, 88, 0);
+    }
+}
+
+@media (max-width: 600px) {
+    .control-musica {
+        right: 18px;
+        bottom: 18px;
+
+        width: 52px;
+        height: 52px;
+
+        font-size: 22px;
+    }
+}
+
+/* FOTO PRINCIPAL DESPUÉS DE ABRIR EL SOBRE */
+
+.bienvenida {
+    background:
+        linear-gradient(
+            rgba(30, 20, 15, 0.30),
+            rgba(30, 20, 15, 0.40)
+        ),
+        url("img/portada.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* PORTADA DIVIDIDA: FOTO Y TEXTO */
+
+.bienvenida-dividida {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    padding: 0;
+    background: #fbf8f3;
+
+    align-items: stretch;
+    justify-content: normal;
+}
+
+.bienvenida-foto {
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.bienvenida-foto img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+.bienvenida-contenido {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px 40px;
+    text-align: center;
+
+    background: #fbf8f3;
+}
+
+.bienvenida-contenido .texto-pequeno {
+    margin-bottom: 30px;
+    color: #8f6d54;
+}
+
+.bienvenida-contenido h2 {
+    margin: 0;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(58px, 7vw, 95px);
+    font-weight: 400;
+
+    color: #bc9271;
+}
+
+.bienvenida-contenido .mensaje {
+    max-width: 500px;
+
+    font-size: clamp(18px, 2vw, 24px);
+    font-style: italic;
+    line-height: 1.5;
+
+    color: #8f6d54;
+}
+
+.anillos-decorativos {
+    position: relative;
+
+    width: 70px;
+    height: 48px;
+
+    margin: 35px 0;
+}
+
+.anillos-decorativos span {
+    position: absolute;
+    top: 5px;
+
+    width: 40px;
+    height: 40px;
+
+    border: 2px solid #b28c64;
+    border-radius: 50%;
+}
+
+.anillos-decorativos span:first-child {
+    left: 4px;
+}
+
+.anillos-decorativos span:last-child {
+    right: 4px;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .bienvenida-dividida {
+        display: block;
+    }
+
+    .bienvenida-foto {
+        min-height: auto;
+        height: 55vh;
+        height: 55dvh;
+    }
+
+    .bienvenida-contenido {
+        min-height: 45vh;
+        padding: 60px 25px 100px;
+    }
+
+    .bienvenida-contenido h2 {
+        font-size: 58px;
+    }
+
+}
+/* =========================================
+   BORDE ONDULADO EN COMPUTADORA Y CELULAR
+========================================= */
+
+.bienvenida-foto {
+    position: relative;
+    overflow: hidden;
+}
+
+.bienvenida-foto img {
+    position: relative;
+    z-index: 0;
+}
+
+/* Configuración general de las dos ondas */
+.bienvenida-foto::before,
+.bienvenida-foto::after {
+    content: "";
+    position: absolute;
+
+    left: -5%;
+    bottom: -1px;
+
+    width: 110%;
+
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 100%;
+
+    pointer-events: none;
+}
+
+/* Onda secundaria semitransparente */
+.bienvenida-foto::before {
+    height: 100px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0 70 C120 40 235 98 370 72 C510 45 625 35 770 66 C915 98 1040 43 1200 63 V120 H0 Z' fill='%23e8ded3' fill-opacity='0.68'/%3E%3C/svg%3E");
+
+    z-index: 1;
+}
+
+/* Onda blanca principal */
+.bienvenida-foto::after {
+    height: 78px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0 72 C135 54 245 94 385 75 C525 55 650 37 795 65 C940 92 1060 48 1200 59 V120 H0 Z' fill='%23fbf8f3'/%3E%3C/svg%3E");
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   AJUSTES PARA CELULAR
+========================================= */
+
+@media (max-width: 700px) {
+
+    .bienvenida-foto::before {
+        height: 78px;
+    }
+
+    .bienvenida-foto::after {
+        height: 62px;
+    }
+
+    .bienvenida-contenido {
+        margin-top: -1px;
+        padding-top: 65px;
+    }
+}
+
+/* =========================================
+   FECHA Y CUENTA REGRESIVA
+========================================= */
+
+.fecha-evento {
+    width: min(100%, 520px);
+    margin-top: 45px;
+    text-align: center;
+    color: #8f6d54;
+}
+
+/* Texto superior */
+
+.fecha-introduccion {
+    margin-bottom: 28px;
+
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.15;
+    letter-spacing: 0.4px;
+
+    color: #b08769;
+}
+
+/* Mes, día y hora */
+
+.fecha-principal {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.fecha-lateral {
+    padding: 12px 4px;
+
+    border-bottom: 1px solid rgba(172, 129, 94, 0.55);
+
+    font-size: clamp(13px, 1.5vw, 17px);
+    font-weight: 600;
+    white-space: nowrap;
+
+    color: #9a7458;
+}
+
+.fecha-dia {
+    width: 100px;
+    height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(177, 136, 101, 0.35);
+    border-radius: 25px;
+
+    background: rgba(255, 253, 249, 0.96);
+
+    box-shadow:
+        0 8px 13px rgba(86, 62, 44, 0.14),
+        inset 0 1px 1px rgba(255, 255, 255, 0.95);
+
+    font-size: 59px;
+    font-weight: 500;
+    line-height: 1;
+
+    color: #c39a78;
+}
+
+.fecha-semana {
+    margin-top: 20px;
+
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+    color: #9b755b;
+}
+
+/* Calendario */
+
+.icono-calendario {
+    width: 47px;
+    height: 47px;
+
+    display: block;
+    margin: 22px auto 10px;
+
+    color: #b28c69;
+}
+
+/* Palabra Faltan */
+
+.texto-faltan {
+    margin: 5px 0 18px;
+
+    font-family: "Great Vibes", cursive;
+    font-size: 55px;
+    font-weight: 400;
+    line-height: 1;
+
+    color: #a87f62;
+}
+
+/* Caja de la cuenta regresiva */
+
+.cuenta-regresiva {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    padding: 20px 8px;
+
+    border: 1px solid rgba(165, 125, 94, 0.15);
+    border-radius: 21px;
+
+    background: rgba(255, 253, 249, 0.88);
+
+    box-shadow:
+        0 7px 14px rgba(78, 57, 41, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.95);
+}
+
+.tiempo {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tiempo:not(:last-child)::after {
+    content: "";
+    position: absolute;
+
+    top: 12%;
+    right: 0;
+
+    width: 1px;
+    height: 76%;
+
+    background: rgba(174, 132, 98, 0.17);
+}
+
+.numero-tiempo {
+    font-size: clamp(30px, 4vw, 43px);
+    font-weight: 500;
+    line-height: 1;
+
+    color: #c29a79;
+}
+
+.nombre-tiempo {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #927058;
+}
+
+.mensaje-evento {
+    min-height: 25px;
+    margin-top: 18px;
+
+    font-size: 19px;
+    font-style: italic;
+
+    color: #a77d60;
+}
+
+
+/* =========================================
+   FECHA EN CELULAR
+========================================= */
+
+@media (max-width: 700px) {
+
+    .fecha-evento {
+        margin-top: 45px;
+    }
+
+    .fecha-principal {
+        gap: 8px;
+    }
+
+    .fecha-lateral {
+        padding: 10px 2px;
+        font-size: 12px;
+    }
+
+    .fecha-dia {
+        width: 82px;
+        height: 76px;
+
+        border-radius: 21px;
+        font-size: 50px;
+    }
+
+    .fecha-semana {
+        font-size: 17px;
+    }
+
+    .texto-faltan {
+        font-size: 51px;
+    }
+
+    .cuenta-regresiva {
+        padding: 18px 4px;
+        border-radius: 19px;
+    }
+
+    .numero-tiempo {
+        font-size: 30px;
+    }
+
+    .nombre-tiempo {
+        font-size: 12px;
+    }
+
+}
+
+/* =====================================
+   SECCIÓN DEL INVITADO PERSONALIZADO
+===================================== */
+
+.seccion-invitado {
+    width: 100%;
+    overflow: hidden;
+    background: #fbf8f3;
+    position: relative;
+}
+
+/* Ondas */
+
+.onda-invitado {
+    display: block;
+    width: 100%;
+    height: 115px;
+}
+
+.onda-superior {
+    margin-bottom: -1px;
+    background: #fbf8f3;
+}
+
+.onda-inferior {
+    margin-top: -1px;
+    background: #fbf8f3;
+}
+
+.onda-principal {
+    fill: #d7ad8b;
+}
+
+.onda-clara {
+    fill: #eee2d6;
+}
+
+/* Parte central */
+
+.contenido-invitado {
+    min-height: 390px;
+    padding: 35px 25px 48px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    background: #d7ad8b;
+    color: #ffffff;
+
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.contenido-invitado.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mensaje */
+
+.mensaje-invitado {
+    margin: 0 0 22px;
+    max-width: 460px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(17px, 2vw, 21px);
+    font-weight: 500;
+    line-height: 1.25;
+
+    color: #ffffff;
+}
+
+/* Nombre personalizado */
+
+.nombre-invitado {
+    margin: 0 0 18px;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(48px, 7vw, 76px);
+    font-weight: 400;
+    line-height: 1.05;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 2px 8px rgba(92, 59, 40, 0.12);
+}
+
+/* Texto de reserva */
+
+.texto-reserva {
+    margin: 0 0 14px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(17px, 2vw, 21px);
+    font-weight: 600;
+
+    color: #ffffff;
+}
+
+/* Número de pases */
+
+.cantidad-pases {
+    display: block;
+    margin: 0 0 8px;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(48px, 6vw, 66px);
+    font-weight: 400;
+    line-height: 1;
+
+    color: #ffffff;
+}
+
+/* Descripción */
+
+.descripcion-pases {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 600;
+
+    color: #ffffff;
+}
+
+/* Diseño para celular */
+
+@media (max-width: 600px) {
+
+    .onda-invitado {
+        height: 75px;
+    }
+
+    .contenido-invitado {
+        min-height: 350px;
+        padding: 28px 22px 38px;
+    }
+
+    .mensaje-invitado {
+        font-size: 16px;
+        line-height: 1.22;
+        margin-bottom: 18px;
+    }
+
+    .nombre-invitado {
+        font-size: 48px;
+        margin-bottom: 17px;
+    }
+
+    .texto-reserva {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .cantidad-pases {
+        font-size: 50px;
+    }
+
+    .descripcion-pases {
+        font-size: 16px;
+    }
+}
+
+/* =========================================
+   BENDICIÓN DE LOS PADRES
+========================================== */
+
+.bendicion-padres {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 75px 25px 60px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fdfbf7 0%,
+            #fbf8f3 55%,
+            #f8f2ea 100%
+        );
+
+    color: #8d6a52;
+}
+
+
+/* Contenido principal */
+
+.contenido-bendicion {
+    position: relative;
+    z-index: 2;
+
+    width: min(100%, 620px);
+    min-height: min(750px, calc(100svh - 120px));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* Título superior */
+
+.titulo-bendicion {
+    margin: 0 0 55px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(19px, 2.4vw, 25px);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.05;
+
+    color: #8c674d;
+}
+
+
+/* Bloques de padres */
+
+.grupo-padres {
+    margin-bottom: 30px;
+}
+
+.grupo-padres h2 {
+    margin: 0 0 18px;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(48px, 7vw, 70px);
+    font-weight: 400;
+    line-height: 1;
+
+    color: #d5ad8a;
+}
+
+.nombres-padres {
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(17px, 2vw, 21px);
+    font-weight: 500;
+    line-height: 1.05;
+
+    color: #8d6a52;
+}
+
+.nombres-padres span {
+    display: block;
+}
+
+
+/* Mensaje inferior */
+
+.mensaje-bendicion {
+    width: min(100%, 470px);
+
+    margin: 25px 0 0;
+    padding: 30px 20px 0;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(25px, 3vw, 30px);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.45;
+
+    color: #b9a85c;
+}
+
+.mensaje-bendicion strong {
+    display: block;
+    margin-top: 35px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RAMAS FLORALES
+========================================== */
+
+.rama-floral {
+    position: absolute;
+    z-index: 1;
+
+    color: #c9a786;
+
+    pointer-events: none;
+}
+
+.rama-floral .tallo,
+.rama-floral .ramita {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+}
+
+.rama-floral .hojas,
+.rama-floral .flores {
+    fill: currentColor;
+}
+
+.rama-floral .centro-flor {
+    fill: #b99070;
+}
+
+
+/* Rama superior izquierda */
+
+.rama-superior {
+    top: -110px;
+    left: -65px;
+
+    width: 210px;
+    height: 400px;
+
+    opacity: 0.07;
+
+    transform:
+        rotate(155deg)
+        scaleX(-1);
+}
+
+
+/* Rama inferior derecha */
+
+.rama-inferior {
+    right: -42px;
+    bottom: -65px;
+
+    width: 245px;
+    height: 455px;
+
+    opacity: 0.13;
+
+    transform: rotate(-7deg);
+}
+
+
+/* =========================================
+   DISEÑO PARA CELULAR
+========================================== */
+
+@media (max-width: 600px) {
+
+    .bendicion-padres {
+        min-height: 100svh;
+        padding: 88px 24px 48px;
+    }
+
+    .contenido-bendicion {
+        min-height: calc(100svh - 136px);
+    }
+
+    .titulo-bendicion {
+        margin-bottom: 58px;
+
+        font-size: 18px;
+        line-height: 1.05;
+    }
+
+    .grupo-padres {
+        margin-bottom: 27px;
+    }
+
+    .grupo-padres h2 {
+        margin-bottom: 17px;
+        font-size: 46px;
+    }
+
+    .nombres-padres {
+        font-size: 16px;
+        line-height: 1.02;
+    }
+
+    .mensaje-bendicion {
+        max-width: 290px;
+
+        padding-top: 35px;
+
+        font-size: 30px;
+        line-height: 1.35;
+    }
+
+    .rama-inferior {
+        right: -58px;
+        bottom: -55px;
+
+        width: 215px;
+        height: 400px;
+
+        opacity: 0.11;
+    }
+
+    .rama-superior {
+        top: -100px;
+        left: -75px;
+
+        width: 180px;
+        height: 350px;
+    }
+}
+
+
+/* Celulares pequeños */
+
+@media (max-width: 380px) {
+
+    .bendicion-padres {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .titulo-bendicion {
+        font-size: 17px;
+    }
+
+    .grupo-padres h2 {
+        font-size: 43px;
+    }
+
+    .nombres-padres {
+        font-size: 15px;
+    }
+
+    .mensaje-bendicion {
+        font-size: 13.5px;
+    }
+}
+
+.contenido-bendicion {
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.contenido-bendicion.bendicion-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =====================================
+   HORARIOS Y UBICACIONES
+===================================== */
+
+.seccion-horarios {
+    width: 100%;
+    padding: 70px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    background-color: #faf8f3;
+}
+
+
+/* CUADRO DE CADA EVENTO */
+
+.tarjeta-horario {
+    width: 100%;
+    max-width: 350px;
+    padding: 30px 25px 25px;
+
+    background-color: #ffffff;
+
+    border: 1px solid rgba(183, 153, 113, 0.15);
+    border-radius: 28px;
+
+    box-shadow: 0 10px 22px rgba(74, 57, 42, 0.18);
+
+    text-align: center;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.tarjeta-horario:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 15px 28px rgba(74, 57, 42, 0.22);
+}
+
+
+/* ICONOS */
+
+.icono-horario {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #b79a70;
+}
+
+
+.icono-horario svg {
+    width: 58px;
+    height: 58px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* NOMBRE DEL EVENTO */
+
+.tarjeta-horario h2 {
+    margin: 5px 0 8px;
+
+    font-family: "Great Vibes", cursive;
+    font-size: 43px;
+    font-weight: normal;
+    line-height: 1.1;
+
+    color: #d2aa8e;
+}
+
+
+/* HORA */
+
+.hora-evento {
+    margin: 0 0 12px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 31px;
+    font-weight: 500;
+
+    color: #8c624b;
+}
+
+
+/* NOMBRE DEL LUGAR */
+
+.lugar-evento {
+    min-height: 46px;
+
+    margin: 0 0 18px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+
+    color: #c49e83;
+
+    text-transform: uppercase;
+}
+
+
+/* BOTÓN DE UBICACIÓN */
+
+.boton-ubicacion {
+    min-width: 165px;
+    min-height: 43px;
+
+    padding: 12px 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #d0aa87;
+    color: #ffffff;
+
+    border-radius: 11px;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.boton-ubicacion:hover {
+    background-color: #b98d68;
+    transform: scale(1.04);
+}
+
+
+/* COMPUTADORAS Y TABLETS */
+
+@media screen and (min-width: 768px) {
+
+    .seccion-horarios {
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 35px;
+    }
+
+    .tarjeta-horario {
+        margin: 0;
+    }
+
+}
+
+
+/* CELULARES PEQUEÑOS */
+
+@media screen and (max-width: 380px) {
+
+    .seccion-horarios {
+        padding: 55px 15px;
+        gap: 40px;
+    }
+
+    .tarjeta-horario {
+        padding: 27px 18px 23px;
+    }
+
+    .tarjeta-horario h2 {
+        font-size: 38px;
+    }
+
+    .boton-ubicacion {
+        width: 100%;
+    }
+
+}
+
+/* =====================================================
+   ICONOS ELEGANTES CON ANIMACIÓN 3D
+   CEREMONIA RELIGIOSA Y RECEPCIÓN SOCIAL
+===================================================== */
+
+
+/* CONTENEDOR 3D DE LOS ICONOS */
+
+.icono-horario {
+    position: relative;
+
+    width: 92px;
+    height: 88px;
+
+    margin: 0 auto 7px;
+
+    perspective: 850px;
+    transform-style: preserve-3d;
+
+    /* Desactiva animaciones anteriores */
+    animation: none !important;
+
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+
+/* OCULTAMOS LOS ICONOS SVG ANTERIORES */
+
+.icono-horario svg {
+    display: none !important;
+}
+
+
+/* EFECTO AL PASAR EL CURSOR */
+
+.tarjeta-horario:hover .icono-horario {
+    transform: translateY(-3px) scale(1.08);
+}
+
+
+/* =====================================================
+   NUEVO ICONO ELEGANTE DE LA IGLESIA
+===================================================== */
+
+.tarjeta-horario:nth-child(1) .icono-horario::before {
+    content: "";
+
+    position: absolute;
+    inset: 3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8e6845 0%,
+            #d9bd91 38%,
+            #f1dfbd 53%,
+            #b78e60 72%,
+            #7e5a3c 100%
+        );
+
+    /*
+       La iglesia está dibujada dentro del CSS.
+       No necesitas descargar ninguna imagen.
+    */
+
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='black' stroke-width='1.65' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 56h46'/%3E%3Cpath d='M16 56V31l16-13 16 13v25'/%3E%3Cpath d='M24 56V41h16v15'/%3E%3Cpath d='M32 18V7'/%3E%3Cpath d='M27 11h10'/%3E%3Cpath d='M16 32h32'/%3E%3Cpath d='M10 56V40l6-6'/%3E%3Cpath d='M54 56V40l-6-6'/%3E%3Cpath d='M28 36a4 4 0 0 1 8 0v5h-8z'/%3E%3Cpath d='M20 37v5'/%3E%3Cpath d='M44 37v5'/%3E%3C/g%3E%3C/svg%3E");
+
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='black' stroke-width='1.65' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 56h46'/%3E%3Cpath d='M16 56V31l16-13 16 13v25'/%3E%3Cpath d='M24 56V41h16v15'/%3E%3Cpath d='M32 18V7'/%3E%3Cpath d='M27 11h10'/%3E%3Cpath d='M16 32h32'/%3E%3Cpath d='M10 56V40l6-6'/%3E%3Cpath d='M54 56V40l-6-6'/%3E%3Cpath d='M28 36a4 4 0 0 1 8 0v5h-8z'/%3E%3Cpath d='M20 37v5'/%3E%3Cpath d='M44 37v5'/%3E%3C/g%3E%3C/svg%3E");
+
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+
+    -webkit-mask-position: center;
+    mask-position: center;
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+
+    transform-origin: center bottom;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+
+    filter:
+        drop-shadow(0 5px 3px rgba(103, 72, 43, 0.22))
+        drop-shadow(0 0 6px rgba(224, 194, 146, 0.18));
+
+    animation:
+        iglesiaElegante3D 4.8s
+        cubic-bezier(0.45, 0, 0.25, 1)
+        infinite;
+
+    will-change: transform, filter;
+}
+
+
+/* SOMBRA INFERIOR DE LA IGLESIA */
+
+.tarjeta-horario:nth-child(1) .icono-horario::after {
+    content: "";
+
+    position: absolute;
+
+    width: 66px;
+    height: 13px;
+
+    left: 50%;
+    bottom: 0;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(111, 77, 48, 0.25) 0%,
+            rgba(111, 77, 48, 0.08) 48%,
+            transparent 75%
+        );
+
+    filter: blur(2px);
+
+    transform: translateX(-50%);
+
+    animation:
+        sombraIglesia3D 4.8s
+        cubic-bezier(0.45, 0, 0.25, 1)
+        infinite;
+}
+
+
+/* ANIMACIÓN 3D DE LA IGLESIA */
+
+@keyframes iglesiaElegante3D {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(-7deg)
+            rotateZ(0deg)
+            scale(1);
+
+        filter:
+            drop-shadow(0 5px 3px rgba(103, 72, 43, 0.22))
+            drop-shadow(0 0 5px rgba(224, 194, 146, 0.15));
+    }
+
+    25% {
+        transform:
+            translateY(-4px)
+            translateZ(16px)
+            rotateX(2deg)
+            rotateY(4deg)
+            rotateZ(-0.5deg)
+            scale(1.015);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            translateZ(25px)
+            rotateX(-2deg)
+            rotateY(8deg)
+            rotateZ(0deg)
+            scale(1.04);
+
+        filter:
+            drop-shadow(0 11px 6px rgba(103, 72, 43, 0.25))
+            drop-shadow(0 0 10px rgba(224, 194, 146, 0.25));
+    }
+
+    75% {
+        transform:
+            translateY(-4px)
+            translateZ(15px)
+            rotateX(2deg)
+            rotateY(-2deg)
+            rotateZ(0.5deg)
+            scale(1.015);
+    }
+
+}
+
+
+/* MOVIMIENTO DE LA SOMBRA */
+
+@keyframes sombraIglesia3D {
+
+    0%,
+    100% {
+        opacity: 0.65;
+
+        transform:
+            translateX(-50%)
+            scaleX(1);
+    }
+
+    50% {
+        opacity: 0.28;
+
+        transform:
+            translateX(-50%)
+            scaleX(0.68);
+    }
+
+}
+
+
+/* =====================================================
+   NUEVAS COPAS ELEGANTES
+===================================================== */
+
+/* CONFIGURACIÓN GENERAL DE LAS DOS COPAS */
+
+.tarjeta-horario:nth-child(2) .icono-horario::before,
+.tarjeta-horario:nth-child(2) .icono-horario::after {
+    content: "";
+
+    position: absolute;
+
+    top: 6px;
+
+    width: 43px;
+    height: 72px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7e5a3c 0%,
+            #c7a371 35%,
+            #f1dfbd 52%,
+            #b18455 72%,
+            #755035 100%
+        );
+
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 64'%3E%3Cg fill='none' stroke='black' stroke-width='1.55' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 7h20l-2.6 21c-.6 5-3.9 8-7.4 8s-6.8-3-7.4-8z'/%3E%3Cpath d='M8 20h16'/%3E%3Cpath d='M16 36v15'/%3E%3Cpath d='M8 56h16'/%3E%3Cpath d='M11 26c3 1.5 7 1.5 10 0'/%3E%3C/g%3E%3C/svg%3E");
+
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 64'%3E%3Cg fill='none' stroke='black' stroke-width='1.55' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 7h20l-2.6 21c-.6 5-3.9 8-7.4 8s-6.8-3-7.4-8z'/%3E%3Cpath d='M8 20h16'/%3E%3Cpath d='M16 36v15'/%3E%3Cpath d='M8 56h16'/%3E%3Cpath d='M11 26c3 1.5 7 1.5 10 0'/%3E%3C/g%3E%3C/svg%3E");
+
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+
+    -webkit-mask-position: center;
+    mask-position: center;
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+
+    filter:
+        drop-shadow(0 6px 4px rgba(93, 62, 36, 0.24))
+        drop-shadow(0 0 5px rgba(225, 195, 149, 0.18));
+
+    will-change: transform, filter;
+}
+
+
+/* COPA IZQUIERDA */
+
+.tarjeta-horario:nth-child(2) .icono-horario::before {
+    left: 10px;
+
+    transform-origin: center 78%;
+
+    animation:
+        copaIzquierda3D 4.5s
+        cubic-bezier(0.45, 0, 0.25, 1)
+        infinite;
+}
+
+
+/* COPA DERECHA */
+
+.tarjeta-horario:nth-child(2) .icono-horario::after {
+    right: 10px;
+
+    transform-origin: center 78%;
+
+    animation:
+        copaDerecha3D 4.5s
+        cubic-bezier(0.45, 0, 0.25, 1)
+        infinite;
+}
+
+
+/* COPA IZQUIERDA: SE ACERCA AL CENTRO */
+
+@keyframes copaIzquierda3D {
+
+    0%,
+    55%,
+    100% {
+        transform:
+            translateX(0)
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(-12deg)
+            rotateZ(8deg)
+            scale(1);
+
+        filter:
+            drop-shadow(0 6px 4px rgba(93, 62, 36, 0.24))
+            drop-shadow(0 0 4px rgba(225, 195, 149, 0.15));
+    }
+
+    68% {
+        transform:
+            translateX(6px)
+            translateY(-5px)
+            translateZ(20px)
+            rotateX(-3deg)
+            rotateY(3deg)
+            rotateZ(-4deg)
+            scale(1.04);
+    }
+
+    73% {
+        transform:
+            translateX(8px)
+            translateY(-7px)
+            translateZ(27px)
+            rotateX(-4deg)
+            rotateY(6deg)
+            rotateZ(-7deg)
+            scale(1.08);
+
+        filter:
+            drop-shadow(0 11px 6px rgba(93, 62, 36, 0.28))
+            drop-shadow(0 0 11px rgba(239, 211, 163, 0.42));
+    }
+
+    79% {
+        transform:
+            translateX(5px)
+            translateY(-4px)
+            translateZ(17px)
+            rotateX(-2deg)
+            rotateY(2deg)
+            rotateZ(-2deg)
+            scale(1.03);
+    }
+
+    88% {
+        transform:
+            translateX(0)
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(-12deg)
+            rotateZ(8deg)
+            scale(1);
+    }
+
+}
+
+
+/* COPA DERECHA: SE ACERCA AL CENTRO */
+
+@keyframes copaDerecha3D {
+
+    0%,
+    55%,
+    100% {
+        transform:
+            translateX(0)
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(12deg)
+            rotateZ(-8deg)
+            scale(1);
+
+        filter:
+            drop-shadow(0 6px 4px rgba(93, 62, 36, 0.24))
+            drop-shadow(0 0 4px rgba(225, 195, 149, 0.15));
+    }
+
+    68% {
+        transform:
+            translateX(-6px)
+            translateY(-5px)
+            translateZ(20px)
+            rotateX(-3deg)
+            rotateY(-3deg)
+            rotateZ(4deg)
+            scale(1.04);
+    }
+
+    73% {
+        transform:
+            translateX(-8px)
+            translateY(-7px)
+            translateZ(27px)
+            rotateX(-4deg)
+            rotateY(-6deg)
+            rotateZ(7deg)
+            scale(1.08);
+
+        filter:
+            drop-shadow(0 11px 6px rgba(93, 62, 36, 0.28))
+            drop-shadow(0 0 11px rgba(239, 211, 163, 0.42));
+    }
+
+    79% {
+        transform:
+            translateX(-5px)
+            translateY(-4px)
+            translateZ(17px)
+            rotateX(-2deg)
+            rotateY(-2deg)
+            rotateZ(2deg)
+            scale(1.03);
+    }
+
+    88% {
+        transform:
+            translateX(0)
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(12deg)
+            rotateZ(-8deg)
+            scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   EFECTO AL PASAR EL CURSOR SOBRE LAS TARJETAS
+===================================================== */
+
+.tarjeta-horario:hover .icono-horario {
+    filter:
+        drop-shadow(0 7px 7px rgba(133, 92, 54, 0.15));
+}
+
+
+/* =====================================================
+   ADAPTACIÓN PARA CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .icono-horario {
+        width: 82px;
+        height: 80px;
+    }
+
+    .tarjeta-horario:nth-child(2) .icono-horario::before,
+    .tarjeta-horario:nth-child(2) .icono-horario::after {
+        width: 39px;
+        height: 66px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD: REDUCIR MOVIMIENTO
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tarjeta-horario .icono-horario::before,
+    .tarjeta-horario .icono-horario::after {
+        animation: none !important;
+    }
+
+    .tarjeta-horario:hover .icono-horario {
+        transform: none;
+    }
+
+}
+
+/* =====================================================
+   DRESS CODE ELEGANTE CON ICONOS 3D
+===================================================== */
+
+.dress-code {
+    --color-dress: #d4aa88;
+    --color-dress-oscuro: #bd906d;
+    --color-dress-claro: #ead7c6;
+    --color-exterior-dress: #fbf8f3;
+
+    position: relative;
+
+    width: 100%;
+    min-height: 560px;
+
+    padding: 115px 22px 110px;
+
+    overflow: hidden;
+
+    background-color: var(--color-dress);
+    color: #ffffff;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   ONDAS SUPERIORES E INFERIORES
+===================================================== */
+
+.onda-dress {
+    position: absolute;
+    left: 0;
+
+    width: 100%;
+    height: 105px;
+
+    pointer-events: none;
+}
+
+.onda-dress-superior {
+    top: -1px;
+}
+
+.onda-dress-inferior {
+    bottom: -1px;
+}
+
+.onda-dress-exterior {
+    fill: var(--color-exterior-dress);
+}
+
+.onda-dress-suave {
+    fill: rgba(255, 255, 255, 0.28);
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.contenido-dress-code {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 530px;
+
+    margin: 0 auto;
+}
+
+.subtitulo-dress {
+    margin: 0 0 2px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    opacity: 0.88;
+}
+
+.titulo-dress-code {
+    margin: 0 0 29px;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(52px, 15vw, 72px);
+    font-weight: normal;
+    line-height: 1;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 3px 8px rgba(120, 79, 50, 0.16);
+}
+
+
+/* =====================================================
+   DOS OPCIONES
+===================================================== */
+
+.opciones-dress-code {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+
+    align-items: center;
+
+    width: 100%;
+    max-width: 420px;
+
+    margin: 0 auto;
+}
+
+.opcion-dress {
+    position: relative;
+
+    padding: 0 13px;
+
+    text-align: center;
+}
+
+.opcion-dress h3 {
+    margin: 4px 0 3px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 19px;
+    font-weight: 600;
+
+    color: #ffffff;
+
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.opcion-dress p {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 17px;
+    font-weight: 500;
+
+    color: rgba(255, 255, 255, 0.96);
+}
+
+
+/* =====================================================
+   DIVISIÓN CENTRAL
+===================================================== */
+
+.separador-dress {
+    position: relative;
+
+    width: 1px;
+    height: 135px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255, 255, 255, 0.9) 15%,
+            rgba(255, 255, 255, 0.9) 85%,
+            transparent
+        );
+}
+
+.adorno-separador {
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    top: 50%;
+    left: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+
+    background-color: var(--color-dress);
+}
+
+
+/* =====================================================
+   CONTENEDOR 3D
+===================================================== */
+
+.escenario-icono-dress {
+    position: relative;
+
+    width: 90px;
+    height: 102px;
+
+    margin: 0 auto;
+
+    perspective: 750px;
+    transform-style: preserve-3d;
+}
+
+.icono-dress {
+    position: relative;
+    z-index: 2;
+
+    width: 82px;
+    height: 96px;
+
+    margin: 0 auto;
+
+    color: #ffffff;
+
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+
+    filter:
+        drop-shadow(0 7px 5px rgba(105, 65, 37, 0.18));
+
+    will-change: transform, filter;
+}
+
+.icono-dress svg {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.35;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    overflow: visible;
+}
+
+
+/* CÍRCULOS DEL TRAJE */
+
+.icono-dress svg circle {
+    fill: currentColor;
+    stroke: none;
+}
+
+
+/* =====================================================
+   ANIMACIÓN 3D DEL VESTIDO
+===================================================== */
+
+.icono-vestido {
+    transform-origin: center 85%;
+
+    animation:
+        vestidoElegante3D 4.8s
+        cubic-bezier(0.45, 0, 0.25, 1)
+        infinite;
+}
+
+@keyframes vestidoElegante3D {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(-8deg)
+            rotateZ(-1deg)
+            scale(1);
+
+        filter:
+            drop-shadow(0 7px 5px rgba(105, 65, 37, 0.18));
+    }
+
+    25% {
+        transform:
+            translateY(-3px)
+            translateZ(10px)
+            rotateX(2deg)
+            rotateY(1deg)
+            rotateZ(1.5deg)
+            scale(1.015);
+    }
+
+    50% {
+        transform:
+            translateY(-7px)
+            translateZ(23px)
+            rotateX(-2deg)
+            rotateY(9deg)
+            rotateZ(-1deg)
+            scale(1.04);
+
+        filter:
+            drop-shadow(0 13px 7px rgba(105, 65, 37, 0.22));
+    }
+
+    75% {
+        transform:
+            translateY(-3px)
+            translateZ(11px)
+            rotateX(2deg)
+            rotateY(0deg)
+            rotateZ(1deg)
+            scale(1.018);
+    }
+
+}
+
+
+/* =====================================================
+   ANIMACIÓN 3D DEL TRAJE
+===================================================== */
+
+.icono-traje {
+    transform-origin: center 85%;
+
+    animation:
+        trajeElegante3D 5.1s
+        cubic-bezier(0.45, 0, 0.25, 1)
+        infinite;
+}
+
+@keyframes trajeElegante3D {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(8deg)
+            rotateZ(0.5deg)
+            scale(1);
+
+        filter:
+            drop-shadow(0 7px 5px rgba(105, 65, 37, 0.18));
+    }
+
+    25% {
+        transform:
+            translateY(-3px)
+            translateZ(11px)
+            rotateX(-2deg)
+            rotateY(0deg)
+            rotateZ(-1deg)
+            scale(1.015);
+    }
+
+    50% {
+        transform:
+            translateY(-7px)
+            translateZ(23px)
+            rotateX(2deg)
+            rotateY(-9deg)
+            rotateZ(1deg)
+            scale(1.04);
+
+        filter:
+            drop-shadow(0 13px 7px rgba(105, 65, 37, 0.22));
+    }
+
+    75% {
+        transform:
+            translateY(-3px)
+            translateZ(10px)
+            rotateX(-2deg)
+            rotateY(1deg)
+            rotateZ(-0.5deg)
+            scale(1.018);
+    }
+
+}
+
+
+/* =====================================================
+   PEQUEÑOS DESTELLOS
+===================================================== */
+
+.brillo-icono {
+    position: absolute;
+    z-index: 3;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 0 6px rgba(255, 255, 255, 0.9),
+        0 0 12px rgba(255, 255, 255, 0.5);
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.brillo-icono::before,
+.brillo-icono::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    background-color: rgba(255, 255, 255, 0.9);
+
+    transform: translate(-50%, -50%);
+}
+
+.brillo-icono::before {
+    width: 1px;
+    height: 13px;
+}
+
+.brillo-icono::after {
+    width: 13px;
+    height: 1px;
+}
+
+.brillo-uno {
+    top: 17px;
+    right: 5px;
+
+    animation: destelloDress 4.8s ease-in-out infinite;
+}
+
+.brillo-dos {
+    bottom: 17px;
+    left: 3px;
+
+    animation: destelloDress 4.8s 1.4s ease-in-out infinite;
+}
+
+@keyframes destelloDress {
+
+    0%,
+    35%,
+    100% {
+        opacity: 0;
+        transform: scale(0.3) rotate(0deg);
+    }
+
+    45% {
+        opacity: 0.9;
+        transform: scale(1) rotate(45deg);
+    }
+
+    55% {
+        opacity: 0;
+        transform: scale(1.5) rotate(90deg);
+    }
+
+}
+
+
+/* =====================================================
+   RECORDATORIO
+===================================================== */
+
+.recordatorio-dress {
+    position: relative;
+
+    max-width: 330px;
+
+    margin: 33px auto 0;
+
+    padding-top: 20px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.45;
+
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.recordatorio-dress::before {
+    content: "✦";
+
+    position: absolute;
+
+    top: -5px;
+    left: 50%;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    transform: translateX(-50%);
+
+    animation:
+        estrellaDress 3s ease-in-out infinite;
+}
+
+@keyframes estrellaDress {
+
+    0%,
+    100% {
+        opacity: 0.55;
+        transform:
+            translateX(-50%)
+            scale(0.85)
+            rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform:
+            translateX(-50%)
+            scale(1.15)
+            rotate(90deg);
+    }
+
+}
+
+
+/* =====================================================
+   EFECTO AL PASAR EL CURSOR
+===================================================== */
+
+.opcion-dress:hover .icono-dress {
+    animation-duration: 2.3s;
+
+    filter:
+        drop-shadow(0 14px 8px rgba(105, 65, 37, 0.25))
+        drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+}
+
+
+/* =====================================================
+   COMPUTADORAS
+===================================================== */
+
+@media screen and (min-width: 768px) {
+
+    .dress-code {
+        padding-top: 130px;
+        padding-bottom: 125px;
+    }
+
+    .contenido-dress-code {
+        max-width: 650px;
+    }
+
+    .opciones-dress-code {
+        max-width: 500px;
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .dress-code {
+        min-height: 535px;
+
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .titulo-dress-code {
+        font-size: 54px;
+    }
+
+    .escenario-icono-dress {
+        width: 76px;
+        height: 92px;
+    }
+
+    .icono-dress {
+        width: 70px;
+        height: 86px;
+    }
+
+    .opcion-dress {
+        padding-right: 7px;
+        padding-left: 7px;
+    }
+
+    .opcion-dress h3 {
+        font-size: 17px;
+    }
+
+    .opcion-dress p {
+        font-size: 15px;
+    }
+
+    .recordatorio-dress {
+        font-size: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .icono-vestido,
+    .icono-traje,
+    .brillo-icono,
+    .recordatorio-dress::before {
+        animation: none !important;
+    }
+
+}
+
+/* =====================================================
+   MOMENTOS ESPECIALES
+===================================================== */
+
+.momentos-especiales {
+    --color-linea-momentos: #c7a17e;
+    --color-texto-momentos: #b88966;
+    --color-titulo-momentos: #d0a886;
+    --color-fondo-momentos: #fcfaf6;
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 90px 18px 110px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 90% 14%,
+            rgba(218, 195, 169, 0.13),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 8% 88%,
+            rgba(218, 195, 169, 0.12),
+            transparent 25%
+        ),
+        var(--color-fondo-momentos);
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.encabezado-momentos {
+    width: 100%;
+    max-width: 520px;
+
+    margin: 0 auto 48px;
+}
+
+.subtitulo-momentos {
+    margin: 0 0 4px;
+
+    color: #c8a78d;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.titulo-momentos {
+    margin: 0;
+
+    color: var(--color-titulo-momentos);
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(52px, 14vw, 72px);
+    font-weight: normal;
+    line-height: 1.04;
+
+    text-shadow:
+        0 4px 9px rgba(134, 91, 57, 0.1);
+}
+
+.descripcion-momentos {
+    max-width: 360px;
+
+    margin: 14px auto 0;
+
+    color: #b28a6d;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   LÍNEA CENTRAL
+===================================================== */
+
+.linea-momentos {
+    position: relative;
+
+    width: 100%;
+    max-width: 470px;
+
+    margin: 0 auto;
+}
+
+.linea-momentos::before {
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+    bottom: 15px;
+    left: 50%;
+
+    width: 1px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--color-linea-momentos) 3%,
+            var(--color-linea-momentos) 97%,
+            transparent
+        );
+
+    transform: translateX(-50%);
+}
+
+
+/* =====================================================
+   CADA MOMENTO
+===================================================== */
+
+.momento {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    min-height: 160px;
+}
+
+.contenido-momento {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 125px;
+
+    padding: 12px 15px 17px;
+
+    border-bottom: 1px solid rgba(199, 161, 126, 0.85);
+}
+
+.momento-izquierda .contenido-momento {
+    grid-column: 1;
+
+    border-right: 0;
+    border-bottom-right-radius: 30px;
+}
+
+.momento-derecha .contenido-momento {
+    grid-column: 2;
+
+    border-left: 0;
+    border-bottom-left-radius: 30px;
+}
+
+.momento-izquierda .hora-momento {
+    grid-column: 1;
+}
+
+.momento-derecha .hora-momento {
+    grid-column: 2;
+}
+
+
+/* PEQUEÑO PUNTO DE UNIÓN CON LA LÍNEA */
+
+.momento::after {
+    content: "";
+
+    position: absolute;
+
+    top: 124px;
+    left: 50%;
+
+    width: 7px;
+    height: 7px;
+
+    border: 1px solid var(--color-linea-momentos);
+    border-radius: 50%;
+
+    background-color: var(--color-fondo-momentos);
+
+    transform: translate(-50%, -50%);
+
+    box-shadow:
+        0 0 0 4px var(--color-fondo-momentos);
+}
+
+
+/* =====================================================
+   TEXTOS
+===================================================== */
+
+.contenido-momento h3 {
+    max-width: 140px;
+
+    margin: 5px 0 0;
+
+    color: var(--color-texto-momentos);
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.15;
+
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.hora-momento {
+    align-self: start;
+
+    margin: 7px 0 0;
+
+    color: #8f674e;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+
+/* =====================================================
+   ICONOS
+===================================================== */
+
+.icono-momento {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 66px;
+    height: 66px;
+
+    color: #b9966f;
+
+    perspective: 650px;
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(0 5px 4px rgba(121, 82, 51, 0.12));
+
+    animation:
+        movimientoIconoMomento 4.5s
+        ease-in-out
+        infinite;
+
+    will-change: transform, filter;
+}
+
+.icono-momento svg {
+    width: 58px;
+    height: 58px;
+
+    overflow: visible;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* ANIMACIÓN GENERAL */
+
+@keyframes movimientoIconoMomento {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            translateZ(0)
+            rotateY(-5deg)
+            scale(1);
+
+        filter:
+            drop-shadow(0 5px 4px rgba(121, 82, 51, 0.12));
+    }
+
+    50% {
+        transform:
+            translateY(-6px)
+            translateZ(18px)
+            rotateY(7deg)
+            scale(1.045);
+
+        filter:
+            drop-shadow(0 10px 6px rgba(121, 82, 51, 0.2));
+    }
+
+}
+
+
+/* CADA ICONO TIENE UN TIEMPO DIFERENTE */
+
+.momento:nth-child(2) .icono-momento {
+    animation-delay: -0.6s;
+}
+
+.momento:nth-child(3) .icono-momento {
+    animation-delay: -1.2s;
+}
+
+.momento:nth-child(4) .icono-momento {
+    animation-delay: -1.8s;
+}
+
+.momento:nth-child(5) .icono-momento {
+    animation-delay: -2.4s;
+}
+
+.momento:nth-child(6) .icono-momento {
+    animation-delay: -3s;
+}
+
+.momento:nth-child(7) .icono-momento {
+    animation-delay: -3.6s;
+}
+
+.momento:nth-child(8) .icono-momento {
+    animation-delay: -4.2s;
+}
+
+
+/* =====================================================
+   ANIMACIÓN ESPECIAL DEL PRIMER BAILE
+===================================================== */
+
+.icono-baile-momento {
+    animation-name: movimientoBaileMomento;
+}
+
+@keyframes movimientoBaileMomento {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotateZ(-2deg)
+            rotateY(-6deg)
+            scale(1);
+    }
+
+    25% {
+        transform:
+            translateY(-3px)
+            rotateZ(3deg)
+            rotateY(2deg)
+            scale(1.02);
+    }
+
+    50% {
+        transform:
+            translateY(-7px)
+            rotateZ(-3deg)
+            rotateY(7deg)
+            scale(1.05);
+    }
+
+    75% {
+        transform:
+            translateY(-3px)
+            rotateZ(2deg)
+            rotateY(0deg)
+            scale(1.02);
+    }
+
+}
+
+
+/* =====================================================
+   ANIMACIÓN ESPECIAL DE LAS COPAS
+===================================================== */
+
+.icono-copas-momento {
+    animation-name: brindisMomento;
+}
+
+@keyframes brindisMomento {
+
+    0%,
+    60%,
+    100% {
+        transform:
+            translateY(0)
+            rotateZ(0deg)
+            scale(1);
+    }
+
+    70% {
+        transform:
+            translateY(-4px)
+            rotateZ(-4deg)
+            scale(1.03);
+    }
+
+    78% {
+        transform:
+            translateY(-7px)
+            rotateZ(4deg)
+            scale(1.06);
+
+        filter:
+            drop-shadow(0 10px 7px rgba(121, 82, 51, 0.23));
+    }
+
+    87% {
+        transform:
+            translateY(-3px)
+            rotateZ(-2deg)
+            scale(1.025);
+    }
+
+}
+
+
+/* =====================================================
+   ANIMACIÓN ESPECIAL DE LA CÁMARA
+===================================================== */
+
+.icono-camara-momento {
+    animation-name: camaraMomento;
+}
+
+@keyframes camaraMomento {
+
+    0%,
+    65%,
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity: 1;
+    }
+
+    72% {
+        transform:
+            translateY(-4px)
+            scale(1.06);
+
+        opacity: 0.82;
+    }
+
+    76% {
+        transform:
+            translateY(-5px)
+            scale(1.09);
+
+        opacity: 1;
+
+        filter:
+            drop-shadow(0 0 9px rgba(200, 167, 127, 0.65));
+    }
+
+    83% {
+        transform:
+            translateY(-3px)
+            scale(1.03);
+    }
+
+}
+
+
+/* =====================================================
+   EFECTO AL PASAR EL CURSOR
+===================================================== */
+
+.contenido-momento:hover .icono-momento {
+    animation-duration: 2.1s;
+
+    color: #a87f59;
+}
+
+
+/* =====================================================
+   COMPUTADORAS
+===================================================== */
+
+@media screen and (min-width: 768px) {
+
+    .momentos-especiales {
+        padding-top: 110px;
+        padding-bottom: 130px;
+    }
+
+    .linea-momentos {
+        max-width: 580px;
+    }
+
+    .momento {
+        min-height: 175px;
+    }
+
+    .contenido-momento {
+        min-height: 138px;
+    }
+
+    .momento::after {
+        top: 137px;
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .momentos-especiales {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .titulo-momentos {
+        font-size: 52px;
+    }
+
+    .descripcion-momentos {
+        padding-right: 18px;
+        padding-left: 18px;
+
+        font-size: 15px;
+    }
+
+    .contenido-momento {
+        padding-right: 7px;
+        padding-left: 7px;
+    }
+
+    .contenido-momento h3 {
+        max-width: 125px;
+
+        font-size: 13px;
+    }
+
+    .icono-momento {
+        width: 59px;
+        height: 59px;
+    }
+
+    .icono-momento svg {
+        width: 52px;
+        height: 52px;
+    }
+
+    .hora-momento {
+        font-size: 20px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .icono-momento {
+        animation: none !important;
+    }
+
+}
+
+/* =====================================================
+   NUEVO CUADRO DE PUNTUALIDAD
+===================================================== */
+
+.seccion-aviso-puntualidad {
+    position: relative;
+
+    width: 100%;
+
+    padding: 60px 18px 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #fcfaf6;
+}
+
+
+/* =====================================================
+   MARCO RECTANGULAR
+===================================================== */
+
+.cuadro-puntualidad {
+    position: relative;
+
+    width: 100%;
+    max-width: 310px;
+
+    padding: 27px 24px 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #fffdf9 100%
+        );
+
+    border: 1px solid rgba(194, 159, 126, 0.14);
+    border-radius: 25px;
+
+    box-shadow:
+        0 11px 20px rgba(89, 62, 42, 0.17),
+        0 3px 6px rgba(89, 62, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    text-align: center;
+
+    overflow: hidden;
+
+    animation:
+        entradaCuadroPuntualidad 0.9s ease both;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* REFLEJO SUAVE DEL MARCO */
+
+.cuadro-puntualidad::before {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 160px;
+
+    top: -105px;
+    left: -55px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(223, 195, 165, 0.13),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* EFECTO AL PASAR EL CURSOR */
+
+.cuadro-puntualidad:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 16px 27px rgba(89, 62, 42, 0.2),
+        0 5px 9px rgba(89, 62, 42, 0.09),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+
+/* =====================================================
+   CONTENEDOR DEL RELOJ
+===================================================== */
+
+.contenedor-reloj-premium {
+    position: relative;
+
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto 13px;
+
+    perspective: 700px;
+    transform-style: preserve-3d;
+
+    animation:
+        flotacionRelojPremium 4.2s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   RELOJ
+===================================================== */
+
+.reloj-premium {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+
+    filter:
+        drop-shadow(0 5px 4px rgba(111, 76, 48, 0.13));
+
+    transform-style: preserve-3d;
+}
+
+
+/* CÍRCULO EXTERIOR */
+
+.borde-reloj {
+    fill: #fffdf9;
+
+    stroke: #b78f69;
+    stroke-width: 2;
+
+    filter:
+        drop-shadow(0 2px 2px rgba(118, 79, 47, 0.08));
+}
+
+
+/* MARCAS DEL RELOJ */
+
+.marca-principal {
+    stroke: #aa805d;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.marca-pequena {
+    stroke: rgba(176, 133, 96, 0.62);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+}
+
+
+/* =====================================================
+   MANECILLAS
+===================================================== */
+
+.aguja-reloj {
+    transform-box: view-box;
+    transform-origin: 50px 50px;
+}
+
+
+/* MANECILLA CORTA */
+
+.aguja-hora {
+    animation:
+        rotacionAgujaHora 48s linear infinite;
+}
+
+.aguja-hora line {
+    stroke: #9f7553;
+    stroke-width: 3.4;
+    stroke-linecap: round;
+}
+
+
+/* MANECILLA LARGA */
+
+.aguja-minutos {
+    animation:
+        rotacionAgujaMinutos 8s linear infinite;
+}
+
+.aguja-minutos line {
+    stroke: #b58b67;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+}
+
+
+/* CENTRO DEL RELOJ */
+
+.centro-reloj-premium {
+    fill: #a77c58;
+
+    stroke: #fffdf9;
+    stroke-width: 2;
+
+    filter:
+        drop-shadow(0 2px 2px rgba(86, 54, 30, 0.23));
+}
+
+
+/* =====================================================
+   TEXTO
+===================================================== */
+
+.mensaje-puntualidad-premium {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+
+    color: #ae8263;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.28;
+}
+
+.mensaje-puntualidad-premium strong {
+    color: #9c7052;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   ANIMACIÓN DE LAS MANECILLAS
+===================================================== */
+
+@keyframes rotacionAgujaMinutos {
+
+    from {
+        transform: rotate(35deg);
+    }
+
+    to {
+        transform: rotate(395deg);
+    }
+
+}
+
+
+@keyframes rotacionAgujaHora {
+
+    from {
+        transform: rotate(-55deg);
+    }
+
+    to {
+        transform: rotate(305deg);
+    }
+
+}
+
+
+/* =====================================================
+   MOVIMIENTO ELEGANTE DEL RELOJ
+===================================================== */
+
+@keyframes flotacionRelojPremium {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(-4deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-4px)
+            translateZ(14px)
+            rotateX(3deg)
+            rotateY(6deg)
+            scale(1.035);
+    }
+
+}
+
+
+/* =====================================================
+   ENTRADA DEL MARCO
+===================================================== */
+
+@keyframes entradaCuadroPuntualidad {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .seccion-aviso-puntualidad {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .cuadro-puntualidad {
+        max-width: 300px;
+
+        padding:
+            25px
+            18px
+            23px;
+    }
+
+    .contenedor-reloj-premium {
+        width: 59px;
+        height: 59px;
+    }
+
+    .mensaje-puntualidad-premium {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cuadro-puntualidad,
+    .contenedor-reloj-premium,
+    .aguja-reloj {
+        animation: none !important;
+    }
+
+    .aguja-hora {
+        transform: rotate(-55deg);
+    }
+
+    .aguja-minutos {
+        transform: rotate(35deg);
+    }
+
+}
+/* ACORTAR ESPACIO ENTRE MOMENTOS ESPECIALES
+   Y EL CUADRO DE PUNTUALIDAD */
+
+.momentos-especiales {
+    padding-bottom: 35px;
+}
+
+.seccion-aviso-puntualidad {
+    padding-top: 70px;
+}
+
+/* =====================================================
+   GALERÍA NOSOTROS
+===================================================== */
+
+.seccion-nosotros {
+    position: relative;
+
+    width: 100%;
+
+    padding: 65px 17px 85px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 92% 12%,
+            rgba(211, 181, 151, 0.12),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 5% 88%,
+            rgba(211, 181, 151, 0.1),
+            transparent 26%
+        ),
+        #fcfaf6;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   TÍTULO
+===================================================== */
+
+.encabezado-nosotros {
+    position: relative;
+
+    width: 100%;
+    max-width: 450px;
+
+    margin: 0 auto 28px;
+}
+
+.subtitulo-nosotros {
+    margin: 0 0 3px;
+
+    color: #c6a184;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.titulo-nosotros {
+    margin: 0;
+
+    color: #d0aa8b;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(58px, 17vw, 78px);
+    font-weight: normal;
+    line-height: 1;
+
+    text-shadow:
+        0 4px 8px rgba(127, 87, 56, 0.1);
+}
+
+.adorno-nosotros {
+    position: relative;
+
+    display: block;
+
+    width: 78px;
+    height: 1px;
+
+    margin: 13px auto 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #c69e7c,
+            transparent
+        );
+}
+
+.adorno-nosotros::after {
+    content: "◇";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    padding: 0 6px;
+
+    background-color: #fcfaf6;
+    color: #c69e7c;
+
+    font-size: 10px;
+
+    transform: translate(-50%, -50%);
+}
+
+
+/* =====================================================
+   CUADRÍCULA DE FOTOGRAFÍAS
+===================================================== */
+
+.galeria-nosotros {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+    max-width: 370px;
+
+    margin: 0 auto;
+
+    gap: 10px;
+}
+
+
+/* CUADRO DE CADA FOTO */
+
+.foto-nosotros {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(188, 151, 117, 0.14);
+    border-radius: 17px;
+
+    background-color: #f0e7dd;
+
+    box-shadow:
+        0 6px 13px rgba(91, 64, 43, 0.1);
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px)
+        scale(0.97);
+
+    animation:
+        aparecerFotoNosotros 0.8s ease forwards;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* ENTRADA ESCALONADA */
+
+.foto-nosotros:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.foto-nosotros:nth-child(2) {
+    animation-delay: 0.14s;
+}
+
+.foto-nosotros:nth-child(3) {
+    animation-delay: 0.23s;
+}
+
+.foto-nosotros:nth-child(4) {
+    animation-delay: 0.32s;
+}
+
+.foto-nosotros:nth-child(5) {
+    animation-delay: 0.41s;
+}
+
+.foto-nosotros:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+
+/* IMAGEN */
+
+.foto-nosotros img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition:
+        transform 0.7s cubic-bezier(0.2, 0.75, 0.25, 1),
+        filter 0.4s ease;
+}
+
+
+/* BRILLO SUPERIOR */
+
+.foto-nosotros::before {
+    content: "";
+
+    position: absolute;
+    z-index: 2;
+
+    width: 55%;
+    height: 160%;
+
+    top: -30%;
+    left: -85%;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent,
+            rgba(255, 255, 255, 0.28),
+            transparent
+        );
+
+    transform: rotate(12deg);
+
+    transition: left 0.8s ease;
+
+    pointer-events: none;
+}
+
+
+/* DEGRADADO INFERIOR MUY SUAVE */
+
+.foto-nosotros::after {
+    content: "";
+
+    position: absolute;
+    z-index: 1;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(109, 76, 51, 0.08),
+            transparent 42%
+        );
+
+    pointer-events: none;
+}
+
+
+/* EFECTO AL PASAR EL CURSOR */
+
+.foto-nosotros:hover,
+.foto-nosotros:focus-visible {
+    transform:
+        translateY(-5px)
+        rotateX(2deg)
+        rotateY(-2deg)
+        scale(1.025);
+
+    box-shadow:
+        0 13px 22px rgba(91, 64, 43, 0.18);
+}
+
+.foto-nosotros:hover img,
+.foto-nosotros:focus-visible img {
+    transform: scale(1.09);
+
+    filter:
+        saturate(1.03)
+        contrast(1.02);
+}
+
+.foto-nosotros:hover::before,
+.foto-nosotros:focus-visible::before {
+    left: 135%;
+}
+
+
+/* =====================================================
+   MENSAJE INFERIOR
+===================================================== */
+
+.mensaje-nosotros {
+    max-width: 315px;
+
+    margin: 28px auto 0;
+
+    color: #ad8468;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   ANIMACIÓN DE ENTRADA
+===================================================== */
+
+@keyframes aparecerFotoNosotros {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   VISOR DE FOTOGRAFÍAS
+===================================================== */
+
+.visor-fotos {
+    position: fixed;
+    z-index: 9999;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background-color: rgba(40, 29, 21, 0.86);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.visor-fotos.visor-activo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.imagen-visor-fotos {
+    display: block;
+
+    width: auto;
+    max-width: min(92vw, 750px);
+    max-height: 84vh;
+
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+
+    object-fit: contain;
+
+    box-shadow:
+        0 22px 55px rgba(0, 0, 0, 0.42);
+
+    transform:
+        scale(0.88)
+        translateY(15px);
+
+    transition:
+        transform 0.4s
+        cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+.visor-fotos.visor-activo .imagen-visor-fotos {
+    transform:
+        scale(1)
+        translateY(0);
+}
+
+
+/* BOTÓN CERRAR */
+
+.cerrar-visor-fotos {
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 31px;
+    font-weight: 300;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.cerrar-visor-fotos:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+
+    transform: rotate(90deg);
+}
+
+
+/* EVITA QUE LA PÁGINA SE MUEVA
+   CUANDO UNA FOTO ESTÁ ABIERTA */
+
+body.visor-fotos-abierto {
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   COMPUTADORAS
+===================================================== */
+
+@media screen and (min-width: 768px) {
+
+    .seccion-nosotros {
+        padding-top: 85px;
+        padding-bottom: 105px;
+    }
+
+    .galeria-nosotros {
+        max-width: 650px;
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        gap: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .seccion-nosotros {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .galeria-nosotros {
+        gap: 8px;
+    }
+
+    .foto-nosotros {
+        border-radius: 15px;
+    }
+
+    .mensaje-nosotros {
+        padding-right: 15px;
+        padding-left: 15px;
+
+        font-size: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .foto-nosotros,
+    .foto-nosotros img,
+    .foto-nosotros::before,
+    .imagen-visor-fotos,
+    .cerrar-visor-fotos {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .foto-nosotros {
+        opacity: 1;
+        transform: none;
+    }
+
+}
+
+/* =====================================================
+   SECCIÓN PARA COMPARTIR FOTOGRAFÍAS
+===================================================== */
+
+.seccion-compartir-recuerdos {
+    position: relative;
+
+    width: 100%;
+
+    padding: 65px 18px 85px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 88% 12%,
+            rgba(213, 184, 154, 0.12),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 8% 88%,
+            rgba(213, 184, 154, 0.1),
+            transparent 27%
+        ),
+        #fcfaf6;
+}
+
+
+/* =====================================================
+   MARCO PRINCIPAL
+===================================================== */
+
+.tarjeta-compartir-recuerdos {
+    position: relative;
+
+    width: 100%;
+    max-width: 330px;
+
+    padding: 32px 25px 27px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(190, 152, 116, 0.14);
+    border-radius: 27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #fffdf9 100%
+        );
+
+    box-shadow:
+        0 12px 23px rgba(87, 61, 42, 0.17),
+        0 4px 8px rgba(87, 61, 42, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    text-align: center;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+
+    animation:
+        entradaTarjetaCompartir 0.9s ease both;
+}
+
+
+/* REFLEJO SUAVE DEL CUADRO */
+
+.tarjeta-compartir-recuerdos::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -125px;
+    left: -85px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(215, 184, 153, 0.14),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* EFECTO AL PASAR EL CURSOR */
+
+.tarjeta-compartir-recuerdos:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 17px 30px rgba(87, 61, 42, 0.2),
+        0 6px 10px rgba(87, 61, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+
+/* =====================================================
+   ESCENARIO DE LA CÁMARA
+===================================================== */
+
+.escenario-camara-compartir {
+    position: relative;
+
+    width: 100px;
+    height: 86px;
+
+    margin: 0 auto 7px;
+
+    perspective: 850px;
+    transform-style: preserve-3d;
+}
+
+
+/* =====================================================
+   CÁMARA
+===================================================== */
+
+.camara-compartir {
+    position: relative;
+    z-index: 2;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+
+    fill: none;
+    stroke: #b58b69;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transform-origin: center bottom;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+
+    filter:
+        drop-shadow(0 6px 4px rgba(104, 69, 41, 0.17));
+
+    animation:
+        camaraCompartir3D 4.8s
+        cubic-bezier(0.45, 0, 0.25, 1)
+        infinite;
+
+    will-change: transform, filter;
+}
+
+
+/* LENTE */
+
+.lente-compartir {
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        lenteExteriorCompartir 4.8s ease-in-out infinite;
+}
+
+.lente-interior-compartir {
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        lenteInteriorCompartir 4.8s ease-in-out infinite;
+}
+
+.centro-lente-compartir {
+    fill: rgba(181, 139, 105, 0.13);
+}
+
+.reflejo-lente-compartir {
+    opacity: 0.7;
+
+    animation:
+        reflejoLenteCompartir 4.8s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   DESTELLO DE LA CÁMARA
+===================================================== */
+
+.destello-camara-compartir {
+    position: absolute;
+    z-index: 5;
+
+    width: 12px;
+    height: 12px;
+
+    top: 12px;
+    right: 5px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(222, 188, 151, 0.65) 38%,
+            transparent 72%
+        );
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation:
+        flashCamaraCompartir 4.8s ease-in-out infinite;
+}
+
+
+/* PEQUEÑOS BRILLOS */
+
+.brillo-camara {
+    position: absolute;
+    z-index: 4;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background-color: #cfaa84;
+
+    box-shadow:
+        0 0 7px rgba(207, 170, 132, 0.9),
+        0 0 13px rgba(207, 170, 132, 0.45);
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.brillo-camara::before,
+.brillo-camara::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    background-color: #cfaa84;
+
+    transform: translate(-50%, -50%);
+}
+
+.brillo-camara::before {
+    width: 1px;
+    height: 12px;
+}
+
+.brillo-camara::after {
+    width: 12px;
+    height: 1px;
+}
+
+.brillo-camara-uno {
+    top: 12px;
+    left: 6px;
+
+    animation:
+        brilloCamaraCompartir 4.8s 0.4s ease-in-out infinite;
+}
+
+.brillo-camara-dos {
+    right: 4px;
+    bottom: 14px;
+
+    animation:
+        brilloCamaraCompartir 4.8s 1.8s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   TÍTULO Y MENSAJE
+===================================================== */
+
+.titulo-compartir-recuerdos {
+    position: relative;
+    z-index: 2;
+
+    margin: 2px 0 10px;
+
+    color: #c99f7d;
+
+    font-family: "Great Vibes", cursive;
+    font-size: 37px;
+    font-weight: normal;
+    line-height: 1.05;
+}
+
+.texto-compartir-recuerdos {
+    position: relative;
+    z-index: 2;
+
+    max-width: 260px;
+
+    margin: 0 auto 18px;
+
+    color: #a97e61;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+.boton-compartir-fotos {
+    position: relative;
+    z-index: 2;
+
+    min-width: 190px;
+    min-height: 44px;
+
+    padding: 11px 21px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d3ae8a 0%,
+            #c79c76 100%
+        );
+
+    color: #ffffff;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 0.035em;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    box-shadow:
+        0 6px 11px rgba(126, 86, 52, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.boton-compartir-fotos:hover,
+.boton-compartir-fotos:focus-visible {
+    transform:
+        translateY(-3px)
+        scale(1.025);
+
+    background:
+        linear-gradient(
+            135deg,
+            #c99f78 0%,
+            #b98964 100%
+        );
+
+    box-shadow:
+        0 10px 16px rgba(126, 86, 52, 0.23),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.boton-compartir-fotos:focus-visible {
+    outline: 3px solid rgba(196, 154, 116, 0.3);
+    outline-offset: 3px;
+}
+
+
+/* ICONO DE SUBIR */
+
+.icono-subir-fotos {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    animation:
+        subirIconoFotos 2.4s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes camaraCompartir3D {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(-7deg)
+            rotateZ(-1deg)
+            scale(1);
+
+        filter:
+            drop-shadow(0 6px 4px rgba(104, 69, 41, 0.17));
+    }
+
+    25% {
+        transform:
+            translateY(-3px)
+            translateZ(12px)
+            rotateX(2deg)
+            rotateY(1deg)
+            rotateZ(1deg)
+            scale(1.015);
+    }
+
+    50% {
+        transform:
+            translateY(-7px)
+            translateZ(23px)
+            rotateX(-2deg)
+            rotateY(8deg)
+            rotateZ(0deg)
+            scale(1.045);
+
+        filter:
+            drop-shadow(0 12px 7px rgba(104, 69, 41, 0.23));
+    }
+
+    75% {
+        transform:
+            translateY(-3px)
+            translateZ(11px)
+            rotateX(2deg)
+            rotateY(0deg)
+            rotateZ(-1deg)
+            scale(1.015);
+    }
+
+}
+
+
+@keyframes lenteExteriorCompartir {
+
+    0%,
+    65%,
+    100% {
+        transform: scale(1);
+    }
+
+    74% {
+        transform: scale(1.07);
+    }
+
+    80% {
+        transform: scale(1.02);
+    }
+
+}
+
+
+@keyframes lenteInteriorCompartir {
+
+    0%,
+    65%,
+    100% {
+        transform: scale(1);
+    }
+
+    74% {
+        transform: scale(0.83);
+    }
+
+    80% {
+        transform: scale(1);
+    }
+
+}
+
+
+@keyframes reflejoLenteCompartir {
+
+    0%,
+    65%,
+    100% {
+        opacity: 0.45;
+    }
+
+    74% {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes flashCamaraCompartir {
+
+    0%,
+    69%,
+    77%,
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    73% {
+        opacity: 1;
+        transform: scale(3.6);
+    }
+
+}
+
+
+@keyframes brilloCamaraCompartir {
+
+    0%,
+    35%,
+    100% {
+        opacity: 0;
+
+        transform:
+            scale(0.3)
+            rotate(0deg);
+    }
+
+    48% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(45deg);
+    }
+
+    60% {
+        opacity: 0;
+
+        transform:
+            scale(1.55)
+            rotate(90deg);
+    }
+
+}
+
+
+@keyframes subirIconoFotos {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+
+}
+
+
+@keyframes entradaTarjetaCompartir {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(24px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .seccion-compartir-recuerdos {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .tarjeta-compartir-recuerdos {
+        max-width: 310px;
+
+        padding:
+            29px
+            19px
+            25px;
+    }
+
+    .titulo-compartir-recuerdos {
+        font-size: 34px;
+    }
+
+    .texto-compartir-recuerdos {
+        font-size: 14px;
+    }
+
+    .boton-compartir-fotos {
+        width: 100%;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tarjeta-compartir-recuerdos,
+    .camara-compartir,
+    .lente-compartir,
+    .lente-interior-compartir,
+    .reflejo-lente-compartir,
+    .destello-camara-compartir,
+    .brillo-camara,
+    .icono-subir-fotos {
+        animation: none !important;
+    }
+
+}
+
+/* =====================================================
+   COMPARTIR RECUERDOS — VERSIÓN CORREGIDA
+===================================================== */
+
+.recuerdos-drive {
+    position: relative !important;
+
+    width: 100% !important;
+
+    padding: 55px 18px 75px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background-color: #fcfaf6 !important;
+
+    overflow: hidden !important;
+}
+
+
+/* MARCO BLANCO */
+
+.recuerdos-drive-tarjeta {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: 310px !important;
+
+    padding: 29px 23px 26px !important;
+
+    border: 1px solid rgba(191, 151, 116, 0.16) !important;
+    border-radius: 26px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #fffdf9 100%
+        ) !important;
+
+    box-shadow:
+        0 12px 23px rgba(82, 57, 39, 0.17),
+        0 4px 8px rgba(82, 57, 39, 0.07) !important;
+
+    text-align: center !important;
+
+    box-sizing: border-box !important;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease !important;
+}
+
+
+.recuerdos-drive-tarjeta:hover {
+    transform: translateY(-4px) !important;
+
+    box-shadow:
+        0 17px 29px rgba(82, 57, 39, 0.2),
+        0 6px 10px rgba(82, 57, 39, 0.08) !important;
+}
+
+
+/* =====================================================
+   CÁMARA
+===================================================== */
+
+.recuerdos-drive-camara {
+    position: relative !important;
+
+    width: 92px !important;
+    height: 75px !important;
+
+    margin: 0 auto 9px !important;
+
+    perspective: 800px !important;
+    transform-style: preserve-3d !important;
+}
+
+
+.recuerdos-drive-camara > svg {
+    display: block !important;
+
+    width: 92px !important;
+    height: 75px !important;
+
+    margin: 0 auto !important;
+
+    overflow: visible !important;
+
+    color: #b58a67 !important;
+
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 1.8 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+
+    transform-origin: center bottom !important;
+    transform-style: preserve-3d !important;
+
+    filter:
+        drop-shadow(0 6px 4px rgba(96, 65, 42, 0.17)) !important;
+
+    animation:
+        recuerdosCamara3D 4.7s
+        ease-in-out
+        infinite !important;
+}
+
+
+/* EVITA QUE OTROS ESTILOS PINTEN EL SVG DE NEGRO */
+
+.recuerdos-drive-camara svg path,
+.recuerdos-drive-camara svg circle {
+    fill: none !important;
+    stroke: currentColor !important;
+}
+
+
+.recuerdos-drive-camara .recuerdos-lente-centro {
+    fill: rgba(181, 138, 103, 0.16) !important;
+}
+
+
+/* LENTE ANIMADO */
+
+.recuerdos-lente-exterior,
+.recuerdos-lente-interior {
+    transform-box: fill-box !important;
+    transform-origin: center !important;
+}
+
+
+.recuerdos-lente-exterior {
+    animation:
+        recuerdosLenteExterior 4.7s
+        ease-in-out
+        infinite !important;
+}
+
+
+.recuerdos-lente-interior {
+    animation:
+        recuerdosLenteInterior 4.7s
+        ease-in-out
+        infinite !important;
+}
+
+
+.recuerdos-reflejo {
+    opacity: 0.7 !important;
+
+    animation:
+        recuerdosReflejo 4.7s
+        ease-in-out
+        infinite !important;
+}
+
+
+/* FLASH */
+
+.recuerdos-flash {
+    position: absolute !important;
+    z-index: 5 !important;
+
+    width: 11px !important;
+    height: 11px !important;
+
+    top: 8px !important;
+    right: 2px !important;
+
+    border-radius: 50% !important;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0%,
+            rgba(222, 187, 151, 0.7) 38%,
+            transparent 72%
+        ) !important;
+
+    opacity: 0 !important;
+
+    pointer-events: none !important;
+
+    animation:
+        recuerdosFlash 4.7s
+        ease-in-out
+        infinite !important;
+}
+
+
+/* =====================================================
+   TEXTOS
+===================================================== */
+
+.recuerdos-drive-tarjeta h2 {
+    position: relative !important;
+
+    margin: 3px 0 10px !important;
+
+    color: #c99e7c !important;
+
+    font-family: "Great Vibes", cursive !important;
+    font-size: 35px !important;
+    font-weight: 400 !important;
+    line-height: 1.05 !important;
+
+    text-align: center !important;
+}
+
+
+.recuerdos-drive-tarjeta > p {
+    position: relative !important;
+
+    max-width: 255px !important;
+
+    margin: 0 auto 18px !important;
+
+    color: #a97d61 !important;
+
+    font-family: "Cormorant Garamond", serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+
+    text-align: center !important;
+    text-transform: uppercase !important;
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+.recuerdos-drive-boton {
+    position: relative !important;
+
+    width: auto !important;
+    min-width: 185px !important;
+    min-height: 43px !important;
+
+    padding: 10px 20px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+
+    border: none !important;
+    border-radius: 11px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d2ad89 0%,
+            #c79a74 100%
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-family: "Cormorant Garamond", serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+
+    letter-spacing: 0.03em !important;
+
+    text-align: center !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+
+    box-shadow:
+        0 6px 11px rgba(120, 80, 49, 0.17) !important;
+
+    box-sizing: border-box !important;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease !important;
+}
+
+
+.recuerdos-drive-boton:hover {
+    transform:
+        translateY(-3px)
+        scale(1.025) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c79b75 0%,
+            #b98762 100%
+        ) !important;
+
+    box-shadow:
+        0 10px 16px rgba(120, 80, 49, 0.23) !important;
+}
+
+
+/* ICONO PEQUEÑO DEL BOTÓN */
+
+.recuerdos-drive-boton > svg {
+    display: block !important;
+
+    width: 17px !important;
+    height: 17px !important;
+
+    flex: 0 0 17px !important;
+
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 2 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+
+    animation:
+        recuerdosIconoSubir 2.2s
+        ease-in-out
+        infinite !important;
+}
+
+
+.recuerdos-drive-boton svg path {
+    fill: none !important;
+    stroke: currentColor !important;
+}
+
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes recuerdosCamara3D {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotateX(0deg)
+            rotateY(-6deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-6px)
+            rotateX(3deg)
+            rotateY(7deg)
+            scale(1.045);
+    }
+
+}
+
+
+@keyframes recuerdosLenteExterior {
+
+    0%,
+    65%,
+    100% {
+        transform: scale(1);
+    }
+
+    74% {
+        transform: scale(1.08);
+    }
+
+}
+
+
+@keyframes recuerdosLenteInterior {
+
+    0%,
+    65%,
+    100% {
+        transform: scale(1);
+    }
+
+    74% {
+        transform: scale(0.82);
+    }
+
+}
+
+
+@keyframes recuerdosReflejo {
+
+    0%,
+    65%,
+    100% {
+        opacity: 0.45;
+    }
+
+    74% {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes recuerdosFlash {
+
+    0%,
+    69%,
+    78%,
+    100% {
+        opacity: 0;
+
+        transform: scale(0.2);
+    }
+
+    73% {
+        opacity: 1;
+
+        transform: scale(3.3);
+    }
+
+}
+
+
+@keyframes recuerdosIconoSubir {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .recuerdos-drive {
+        padding-right: 14px !important;
+        padding-left: 14px !important;
+    }
+
+    .recuerdos-drive-tarjeta {
+        max-width: 300px !important;
+
+        padding:
+            27px
+            18px
+            24px !important;
+    }
+
+    .recuerdos-drive-tarjeta h2 {
+        font-size: 32px !important;
+    }
+
+    .recuerdos-drive-tarjeta > p {
+        font-size: 13px !important;
+    }
+
+}
+
+/* =====================================================
+   CELEBRACIÓN SOLO PARA ADULTOS
+===================================================== */
+
+.seccion-solo-adultos {
+    position: relative;
+
+    width: 100%;
+
+    padding: 70px 22px 88px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 87% 30%,
+            rgba(213, 186, 158, 0.11),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 10% 82%,
+            rgba(213, 186, 158, 0.09),
+            transparent 24%
+        ),
+        #fcfaf6;
+
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+/* CONTENIDO */
+
+.contenido-solo-adultos {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 350px;
+
+    margin: 0 auto;
+}
+
+
+/* =====================================================
+   ESCENARIO DEL BEBÉ
+===================================================== */
+
+.escenario-bebe {
+    position: relative;
+
+    width: 92px;
+    height: 92px;
+
+    margin: 0 auto 14px;
+
+    perspective: 850px;
+    transform-style: preserve-3d;
+}
+
+
+/* =====================================================
+   ICONO
+===================================================== */
+
+.icono-bebe {
+    display: block;
+
+    width: 92px;
+    height: 92px;
+
+    overflow: visible;
+
+    fill: none;
+    stroke: #b58d69;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transform-origin: center bottom;
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(0 6px 4px rgba(102, 70, 44, 0.14));
+
+    animation:
+        movimientoBebe3D 4.6s
+        cubic-bezier(0.45, 0, 0.25, 1)
+        infinite;
+
+    will-change: transform;
+}
+
+
+/* CABEZA */
+
+.cabeza-bebe {
+    fill: rgba(255, 253, 249, 0.7);
+}
+
+
+/* RIZO */
+
+.rizo-bebe {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+
+    animation:
+        movimientoRizoBebe 3.2s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   OJOS QUE PARPADEAN
+===================================================== */
+
+.ojo-bebe {
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        parpadeoBebe 5s
+        ease-in-out
+        infinite;
+}
+
+.ojo-bebe-derecho {
+    animation-delay: 0.05s;
+}
+
+
+/* =====================================================
+   SONRISA
+===================================================== */
+
+.sonrisa-bebe {
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        sonrisaBebe 3.8s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   MEJILLAS
+===================================================== */
+
+.mejilla-bebe {
+    fill: rgba(204, 157, 121, 0.24);
+    stroke: none;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        mejillasBebe 3.8s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   PEQUEÑOS DESTELLOS
+===================================================== */
+
+.brillo-bebe {
+    position: absolute;
+    z-index: 4;
+
+    color: #c9a17e;
+
+    font-size: 13px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation:
+        destelloBebe 4s
+        ease-in-out
+        infinite;
+}
+
+.brillo-bebe-uno {
+    top: 9px;
+    right: -3px;
+}
+
+.brillo-bebe-dos {
+    bottom: 12px;
+    left: -5px;
+
+    animation-delay: 1.5s;
+}
+
+
+/* =====================================================
+   TÍTULO
+===================================================== */
+
+.titulo-solo-adultos {
+    margin: 0 0 13px;
+
+    color: #c89e7c;
+
+    font-family: "Great Vibes", cursive;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.05;
+
+    text-shadow:
+        0 3px 7px rgba(120, 80, 50, 0.08);
+}
+
+
+/* =====================================================
+   MENSAJE
+===================================================== */
+
+.mensaje-solo-adultos {
+    max-width: 310px;
+
+    margin: 0 auto;
+
+    color: #a77c5f;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+
+    text-align: center;
+}
+
+.mensaje-solo-adultos strong {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #986e51;
+    font-weight: 600;
+}
+
+
+/* ADORNO INFERIOR */
+
+.mensaje-solo-adultos::after {
+    content: "◇";
+
+    display: block;
+
+    margin-top: 19px;
+
+    color: rgba(188, 147, 111, 0.75);
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   ANIMACIÓN GENERAL DEL BEBÉ
+===================================================== */
+
+@keyframes movimientoBebe3D {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            translateZ(0)
+            rotateX(0deg)
+            rotateY(-5deg)
+            rotateZ(-1deg)
+            scale(1);
+    }
+
+    25% {
+        transform:
+            translateY(-3px)
+            translateZ(9px)
+            rotateX(2deg)
+            rotateY(1deg)
+            rotateZ(1deg)
+            scale(1.015);
+    }
+
+    50% {
+        transform:
+            translateY(-7px)
+            translateZ(20px)
+            rotateX(-2deg)
+            rotateY(7deg)
+            rotateZ(0deg)
+            scale(1.045);
+    }
+
+    75% {
+        transform:
+            translateY(-3px)
+            translateZ(9px)
+            rotateX(2deg)
+            rotateY(0deg)
+            rotateZ(-1deg)
+            scale(1.015);
+    }
+
+}
+
+
+/* MOVIMIENTO DEL RIZO */
+
+@keyframes movimientoRizoBebe {
+
+    0%,
+    100% {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform:
+            rotate(7deg)
+            translateY(-1px);
+    }
+
+}
+
+
+/* PARPADEO */
+
+@keyframes parpadeoBebe {
+
+    0%,
+    43%,
+    47%,
+    75%,
+    79%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    45%,
+    77% {
+        transform: scaleY(0.15);
+    }
+
+}
+
+
+/* SONRISA SUAVE */
+
+@keyframes sonrisaBebe {
+
+    0%,
+    100% {
+        transform: scaleX(1);
+    }
+
+    50% {
+        transform: scaleX(1.08);
+    }
+
+}
+
+
+/* MEJILLAS */
+
+@keyframes mejillasBebe {
+
+    0%,
+    100% {
+        opacity: 0.45;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.18);
+    }
+
+}
+
+
+/* DESTELLOS */
+
+@keyframes destelloBebe {
+
+    0%,
+    32%,
+    100% {
+        opacity: 0;
+
+        transform:
+            scale(0.4)
+            rotate(0deg);
+    }
+
+    48% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(45deg);
+    }
+
+    63% {
+        opacity: 0;
+
+        transform:
+            scale(1.45)
+            rotate(90deg);
+    }
+
+}
+
+
+/* =====================================================
+   EFECTO AL PASAR EL CURSOR
+===================================================== */
+
+.contenido-solo-adultos:hover .icono-bebe {
+    animation-duration: 2.6s;
+
+    filter:
+        drop-shadow(0 11px 7px rgba(102, 70, 44, 0.2));
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .seccion-solo-adultos {
+        padding-right: 17px;
+        padding-left: 17px;
+    }
+
+    .titulo-solo-adultos {
+        font-size: 35px;
+    }
+
+    .mensaje-solo-adultos {
+        max-width: 290px;
+
+        font-size: 14px;
+    }
+
+    .escenario-bebe,
+    .icono-bebe {
+        width: 86px;
+        height: 86px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .icono-bebe,
+    .rizo-bebe,
+    .ojo-bebe,
+    .sonrisa-bebe,
+    .mejilla-bebe,
+    .brillo-bebe {
+        animation: none !important;
+    }
+
+}
+/* =====================================================
+   BEBÉ LIMPIO Y SIMÉTRICO
+===================================================== */
+
+.escenario-bebe-limpio {
+    position: relative;
+
+    width: 92px;
+    height: 92px;
+
+    margin: 0 auto 15px;
+
+    perspective: 800px;
+    transform-style: preserve-3d;
+}
+
+
+/* ICONO GENERAL */
+
+.bebe-limpio {
+    display: block;
+
+    width: 92px;
+    height: 92px;
+
+    overflow: visible;
+
+    color: #b88e6a;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transform-origin: center bottom;
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(0 6px 4px rgba(103, 70, 45, 0.15));
+
+    animation:
+        movimientoBebeLimpio 4.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* CABEZA Y OREJAS */
+
+.cabeza-bebe-limpio {
+    fill: #fffdf9;
+}
+
+.oreja-bebe-limpio {
+    fill: #fffdf9;
+}
+
+
+/* OJOS */
+
+.ojo-bebe-limpio {
+    fill: currentColor;
+    stroke: none;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        parpadeoBebeLimpio 4.8s
+        ease-in-out
+        infinite;
+}
+
+.ojo-bebe-b {
+    animation-delay: 0.04s;
+}
+
+
+/* RIZO */
+
+.rizo-bebe-limpio {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+
+    animation:
+        rizoBebeLimpio 3.2s
+        ease-in-out
+        infinite;
+}
+
+
+/* SONRISA */
+
+.sonrisa-bebe-limpio {
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        sonrisaBebeLimpio 3.6s
+        ease-in-out
+        infinite;
+}
+
+
+/* MEJILLAS */
+
+.mejilla-bebe-limpio {
+    fill: rgba(210, 162, 125, 0.28);
+    stroke: none;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        mejillasBebeLimpio 3.6s
+        ease-in-out
+        infinite;
+}
+
+
+/* DESTELLOS */
+
+.destello-bebe-limpio {
+    position: absolute;
+    z-index: 4;
+
+    color: #c8a17d;
+
+    font-size: 12px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation:
+        destelloBebeLimpio 4s
+        ease-in-out
+        infinite;
+}
+
+.destello-bebe-a {
+    top: 8px;
+    right: -2px;
+}
+
+.destello-bebe-b {
+    bottom: 11px;
+    left: -3px;
+
+    animation-delay: 1.4s;
+}
+
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes movimientoBebeLimpio {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotateY(-4deg)
+            rotateZ(-1deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-6px)
+            rotateY(6deg)
+            rotateZ(1deg)
+            scale(1.035);
+    }
+
+}
+
+
+@keyframes parpadeoBebeLimpio {
+
+    0%,
+    42%,
+    48%,
+    74%,
+    80%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    45%,
+    77% {
+        transform: scaleY(0.12);
+    }
+
+}
+
+
+@keyframes rizoBebeLimpio {
+
+    0%,
+    100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform:
+            rotate(7deg)
+            translateY(-1px);
+    }
+
+}
+
+
+@keyframes sonrisaBebeLimpio {
+
+    0%,
+    100% {
+        transform: scaleX(1);
+    }
+
+    50% {
+        transform: scaleX(1.08);
+    }
+
+}
+
+
+@keyframes mejillasBebeLimpio {
+
+    0%,
+    100% {
+        opacity: 0.55;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+
+}
+
+
+@keyframes destelloBebeLimpio {
+
+    0%,
+    32%,
+    100% {
+        opacity: 0;
+
+        transform:
+            scale(0.4)
+            rotate(0deg);
+    }
+
+    48% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(45deg);
+    }
+
+    62% {
+        opacity: 0;
+
+        transform:
+            scale(1.45)
+            rotate(90deg);
+    }
+
+}
+
+
+/* CELULARES PEQUEÑOS */
+
+@media screen and (max-width: 380px) {
+
+    .escenario-bebe-limpio,
+    .bebe-limpio {
+        width: 86px;
+        height: 86px;
+    }
+
+}
+
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .bebe-limpio,
+    .ojo-bebe-limpio,
+    .rizo-bebe-limpio,
+    .sonrisa-bebe-limpio,
+    .mejilla-bebe-limpio,
+    .destello-bebe-limpio {
+        animation: none !important;
+    }
+
+}
+
+/* =====================================================
+   SUGERENCIA DE REGALOS — MULTICENTER
+===================================================== */
+
+.regalos-multicenter {
+    --regalos-fondo: #d4ad8b;
+    --regalos-fondo-oscuro: #c99770;
+    --regalos-claro: #eddccd;
+    --regalos-exterior: #fcfaf6;
+    --regalos-blanco: #ffffff;
+
+    position: relative;
+
+    width: 100%;
+    min-height: 660px;
+
+    padding: 130px 22px 135px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 35%,
+            rgba(255, 255, 255, 0.08),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 68%,
+            rgba(255, 255, 255, 0.07),
+            transparent 26%
+        ),
+        var(--regalos-fondo);
+
+    color: var(--regalos-blanco);
+
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+/* =====================================================
+   ONDAS
+===================================================== */
+
+.regalos-onda {
+    position: absolute;
+    z-index: 1;
+
+    left: 0;
+
+    width: 100%;
+    height: 105px;
+
+    pointer-events: none;
+}
+
+.regalos-onda-superior {
+    top: -1px;
+}
+
+.regalos-onda-inferior {
+    bottom: -1px;
+}
+
+.regalos-onda-exterior {
+    fill: var(--regalos-exterior);
+}
+
+.regalos-onda-clara {
+    fill: rgba(255, 255, 255, 0.3);
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.regalos-contenido {
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
+    max-width: 390px;
+
+    margin: 0 auto;
+}
+
+
+/* =====================================================
+   ESCENARIO DEL REGALO
+===================================================== */
+
+.regalos-escenario-icono {
+    position: relative;
+
+    width: 115px;
+    height: 125px;
+
+    margin: 0 auto 7px;
+
+    perspective: 900px;
+    transform-style: preserve-3d;
+}
+
+
+.regalos-icono {
+    position: relative;
+    z-index: 3;
+
+    display: block;
+
+    width: 115px;
+    height: 115px;
+
+    overflow: visible;
+
+    color: #ffffff;
+
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transform-origin: center bottom;
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(0 8px 5px rgba(108, 68, 39, 0.18));
+
+    animation:
+        regalosFlotacionGeneral 5.2s
+        ease-in-out
+        infinite;
+
+    will-change: transform;
+}
+
+
+/* EVITAR CONFLICTOS CON OTROS SVG */
+
+.regalos-icono path,
+.regalos-icono rect,
+.regalos-icono circle {
+    fill: none !important;
+    stroke: currentColor !important;
+}
+
+
+/* =====================================================
+   CAJA INFERIOR
+===================================================== */
+
+.regalos-caja-base {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+
+    animation:
+        regalosCajaMovimiento 5.2s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   TAPA QUE ABRE Y CIERRA
+===================================================== */
+
+.regalos-tapa {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+
+    animation:
+        regalosAbrirTapa 5.2s
+        cubic-bezier(0.45, 0, 0.25, 1)
+        infinite;
+}
+
+
+/* =====================================================
+   RAYOS INTERIORES
+===================================================== */
+
+.regalos-rayos {
+    opacity: 0;
+
+    transform-box: fill-box;
+    transform-origin: center bottom;
+
+    animation:
+        regalosRayosSalida 5.2s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   SOMBRA
+===================================================== */
+
+.regalos-sombra-icono {
+    position: absolute;
+    z-index: 1;
+
+    width: 78px;
+    height: 13px;
+
+    bottom: 3px;
+    left: 50%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(99, 61, 35, 0.25) 0%,
+            rgba(99, 61, 35, 0.08) 50%,
+            transparent 75%
+        );
+
+    filter: blur(2px);
+
+    transform: translateX(-50%);
+
+    animation:
+        regalosSombra 5.2s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   DESTELLOS
+===================================================== */
+
+.regalos-destello {
+    position: absolute;
+    z-index: 5;
+
+    color: #ffffff;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.75);
+
+    animation:
+        regalosDestello 5.2s
+        ease-in-out
+        infinite;
+}
+
+.regalos-destello-uno {
+    top: 12px;
+    left: 4px;
+
+    font-size: 15px;
+}
+
+.regalos-destello-dos {
+    top: 3px;
+    right: 2px;
+
+    font-size: 13px;
+
+    animation-delay: 0.3s;
+}
+
+.regalos-destello-tres {
+    top: 48px;
+    right: -9px;
+
+    font-size: 10px;
+
+    animation-delay: 0.7s;
+}
+
+
+/* =====================================================
+   TEXTOS
+===================================================== */
+
+.regalos-subtitulo {
+    margin: 0 0 3px;
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+
+.regalos-titulo {
+    margin: 0 0 18px;
+
+    color: #ffffff;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(52px, 15vw, 70px);
+    font-weight: 400;
+    line-height: 0.96;
+
+    text-shadow:
+        0 5px 10px rgba(105, 65, 36, 0.16);
+}
+
+
+.regalos-mensaje {
+    max-width: 315px;
+
+    margin: 0 auto 24px;
+
+    color: rgba(255, 255, 255, 0.96);
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.32;
+}
+
+
+/* =====================================================
+   IDENTIFICACIÓN DE MULTICENTER
+===================================================== */
+
+.regalos-mesa-identificacion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin: 0 auto 17px;
+
+    padding: 8px 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+
+.regalos-mesa-icono {
+    display: inline-flex;
+
+    width: 23px;
+    height: 23px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: rgba(255, 255, 255, 0.18);
+
+    font-family: serif;
+    font-size: 15px;
+
+    animation:
+        regalosCorazon 2.7s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+.regalos-boton {
+    min-width: 215px;
+    min-height: 44px;
+
+    padding: 10px 20px;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 11px;
+
+    background-color: #ffffff !important;
+    color: #ad7f5d !important;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.04em;
+
+    text-decoration: none !important;
+    text-transform: uppercase;
+
+    box-shadow:
+        0 8px 15px rgba(105, 65, 36, 0.16);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+
+.regalos-boton:hover,
+.regalos-boton:focus-visible {
+    background-color: #fff8f1 !important;
+    color: #986c4c !important;
+
+    transform:
+        translateY(-3px)
+        scale(1.025);
+
+    box-shadow:
+        0 13px 20px rgba(105, 65, 36, 0.22);
+}
+
+
+.regalos-boton:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.35);
+    outline-offset: 4px;
+}
+
+
+.regalos-boton > svg {
+    display: block !important;
+
+    width: 17px !important;
+    height: 17px !important;
+
+    flex: 0 0 17px;
+
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 1.8 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+
+    animation:
+        regalosIconoBoton 2.7s
+        ease-in-out
+        infinite;
+}
+
+
+.regalos-boton svg path {
+    fill: none !important;
+    stroke: currentColor !important;
+}
+
+
+/* =====================================================
+   ANIMACIONES DEL REGALO
+===================================================== */
+
+@keyframes regalosFlotacionGeneral {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotateY(-5deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-6px)
+            rotateY(6deg)
+            scale(1.035);
+    }
+
+}
+
+
+@keyframes regalosAbrirTapa {
+
+    0%,
+    20%,
+    80%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg)
+            scale(1);
+    }
+
+    35% {
+        transform:
+            translateY(-4px)
+            rotate(-2deg)
+            scale(1.015);
+    }
+
+    48%,
+    62% {
+        transform:
+            translateY(-18px)
+            rotate(-7deg)
+            scale(1.035);
+    }
+
+    72% {
+        transform:
+            translateY(-5px)
+            rotate(-2deg)
+            scale(1.015);
+    }
+
+}
+
+
+@keyframes regalosCajaMovimiento {
+
+    0%,
+    20%,
+    80%,
+    100% {
+        transform: scale(1);
+    }
+
+    48%,
+    62% {
+        transform: scale(1.025);
+    }
+
+}
+
+
+@keyframes regalosRayosSalida {
+
+    0%,
+    31%,
+    75%,
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(8px)
+            scale(0.65);
+    }
+
+    46%,
+    63% {
+        opacity: 1;
+
+        transform:
+            translateY(-3px)
+            scale(1);
+    }
+
+}
+
+
+@keyframes regalosSombra {
+
+    0%,
+    100% {
+        opacity: 0.65;
+
+        transform:
+            translateX(-50%)
+            scaleX(1);
+    }
+
+    50% {
+        opacity: 0.32;
+
+        transform:
+            translateX(-50%)
+            scaleX(0.72);
+    }
+
+}
+
+
+@keyframes regalosDestello {
+
+    0%,
+    32%,
+    72%,
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(7px)
+            scale(0.35)
+            rotate(0deg);
+    }
+
+    48% {
+        opacity: 1;
+
+        transform:
+            translateY(-3px)
+            scale(1)
+            rotate(45deg);
+    }
+
+    63% {
+        opacity: 0;
+
+        transform:
+            translateY(-14px)
+            scale(1.45)
+            rotate(100deg);
+    }
+
+}
+
+
+@keyframes regalosCorazon {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.13);
+    }
+
+}
+
+
+@keyframes regalosIconoBoton {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-2px)
+            rotate(-4deg);
+    }
+
+}
+
+
+/* =====================================================
+   EFECTO AL PASAR EL CURSOR
+===================================================== */
+
+.regalos-contenido:hover .regalos-icono {
+    animation-duration: 3.2s;
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .regalos-multicenter {
+        min-height: 630px;
+
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .regalos-escenario-icono {
+        width: 105px;
+        height: 115px;
+    }
+
+    .regalos-icono {
+        width: 105px;
+        height: 105px;
+    }
+
+    .regalos-titulo {
+        font-size: 55px;
+    }
+
+    .regalos-mensaje {
+        max-width: 290px;
+
+        font-size: 15px;
+    }
+
+    .regalos-boton {
+        width: 100%;
+        max-width: 245px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .regalos-icono,
+    .regalos-caja-base,
+    .regalos-tapa,
+    .regalos-rayos,
+    .regalos-sombra-icono,
+    .regalos-destello,
+    .regalos-mesa-icono,
+    .regalos-boton > svg {
+        animation: none !important;
+    }
+
+}
+
+/* =====================================================
+   CONFIRMACIÓN DE ASISTENCIA
+===================================================== */
+
+.rsvp-seccion {
+    position: relative;
+
+    width: 100%;
+
+    padding: 85px 20px 95px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 90% 13%,
+            rgba(211, 181, 151, 0.12),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 8% 87%,
+            rgba(211, 181, 151, 0.1),
+            transparent 27%
+        ),
+        #fcfaf6;
+
+    box-sizing: border-box;
+}
+
+
+/* ADORNO SUAVE DE FONDO */
+
+.rsvp-seccion::before {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    top: -135px;
+    right: -120px;
+
+    border: 1px solid rgba(203, 166, 132, 0.12);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 24px rgba(203, 166, 132, 0.025),
+        0 0 0 48px rgba(203, 166, 132, 0.018);
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.rsvp-contenido {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 410px;
+
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.rsvp-subtitulo {
+    margin: 0 0 5px;
+
+    color: #bf987b;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+
+.rsvp-titulo {
+    margin: 0;
+
+    color: #d0a785;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(58px, 17vw, 78px);
+    font-weight: 400;
+    line-height: 0.94;
+
+    text-shadow:
+        0 4px 9px rgba(125, 82, 51, 0.1);
+}
+
+
+.rsvp-introduccion {
+    max-width: 310px;
+
+    margin: 23px auto 36px;
+
+    color: #9f765a;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.34;
+}
+
+
+/* =====================================================
+   FORMULARIO
+===================================================== */
+
+.rsvp-formulario {
+    width: 100%;
+
+    margin: 0 auto;
+}
+
+
+.rsvp-campo {
+    width: 100%;
+
+    margin-bottom: 17px;
+
+    text-align: left;
+}
+
+
+.rsvp-campo label {
+    display: block;
+
+    margin: 0 0 6px;
+
+    color: #9e7559;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+/* INPUT, SELECT Y TEXTAREA */
+
+.rsvp-campo input,
+.rsvp-campo select,
+.rsvp-campo textarea {
+    display: block;
+
+    width: 100%;
+
+    border: 1px solid #b68d69;
+    border-radius: 15px;
+
+    background-color: rgba(255, 255, 255, 0.72);
+    color: #8e674d;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+
+.rsvp-campo input,
+.rsvp-campo select {
+    height: 48px;
+
+    padding: 0 15px;
+}
+
+
+.rsvp-campo textarea {
+    min-height: 105px;
+
+    padding: 13px 15px;
+
+    resize: vertical;
+}
+
+
+.rsvp-campo input::placeholder,
+.rsvp-campo textarea::placeholder {
+    color: #c3a58e;
+    opacity: 1;
+}
+
+
+.rsvp-campo input:focus,
+.rsvp-campo select:focus,
+.rsvp-campo textarea:focus {
+    border-color: #a97c5a;
+
+    background-color: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(184, 142, 105, 0.13),
+        0 6px 13px rgba(96, 64, 42, 0.08);
+}
+
+
+/* =====================================================
+   SELECT PERSONALIZADO
+===================================================== */
+
+.rsvp-select-contenedor {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.rsvp-select-contenedor select {
+    padding-right: 45px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    cursor: pointer;
+}
+
+
+.rsvp-flecha {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    top: 18px;
+    right: 17px;
+
+    border-right: 2px solid #a47a5b;
+    border-bottom: 2px solid #a47a5b;
+
+    transform: rotate(45deg);
+
+    pointer-events: none;
+
+    transition: transform 0.25s ease;
+}
+
+
+.rsvp-select-contenedor:focus-within .rsvp-flecha {
+    transform:
+        translateY(4px)
+        rotate(225deg);
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+.rsvp-boton {
+    min-width: 205px;
+    min-height: 47px;
+
+    margin-top: 4px;
+
+    padding: 11px 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: none;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a37b5d 0%,
+            #8f674c 100%
+        );
+
+    color: #ffffff;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    box-shadow:
+        0 7px 14px rgba(105, 69, 43, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.rsvp-boton:hover,
+.rsvp-boton:focus-visible {
+    transform:
+        translateY(-3px)
+        scale(1.025);
+
+    background:
+        linear-gradient(
+            135deg,
+            #966d50 0%,
+            #7f593f 100%
+        );
+
+    box-shadow:
+        0 11px 18px rgba(105, 69, 43, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+
+.rsvp-boton:focus-visible {
+    outline: 3px solid rgba(164, 122, 91, 0.25);
+    outline-offset: 4px;
+}
+
+
+.rsvp-boton svg {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    animation:
+        rsvpAvionMovimiento 2.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   MENSAJE DE ESTADO
+===================================================== */
+
+.rsvp-estado {
+    min-height: 21px;
+
+    margin: 11px 0 0;
+
+    color: #9b7052;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   FECHA LÍMITE
+===================================================== */
+
+.rsvp-fecha-limite {
+    width: 100%;
+    max-width: 310px;
+
+    margin: 31px auto 0;
+
+    padding: 14px 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: 1px solid rgba(190, 151, 116, 0.12);
+    border-radius: 18px;
+
+    background-color: rgba(255, 255, 255, 0.82);
+
+    box-shadow:
+        0 7px 14px rgba(84, 58, 40, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    box-sizing: border-box;
+
+    animation:
+        rsvpFechaFlotante 4.5s
+        ease-in-out
+        infinite;
+}
+
+
+.rsvp-fecha-limite svg {
+    width: 29px;
+    height: 29px;
+
+    flex: 0 0 29px;
+
+    fill: none;
+    stroke: #b48a67;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.rsvp-fecha-limite p {
+    margin: 0;
+
+    color: #9b7154;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+    line-height: 1.25;
+}
+
+
+.rsvp-fecha-limite strong {
+    display: block;
+
+    color: #845e46;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes rsvpAvionMovimiento {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translate(3px, -3px)
+            rotate(-4deg);
+    }
+
+}
+
+
+@keyframes rsvpFechaFlotante {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .rsvp-seccion {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .rsvp-titulo {
+        font-size: 59px;
+    }
+
+    .rsvp-introduccion {
+        max-width: 290px;
+
+        font-size: 15px;
+    }
+
+    .rsvp-fecha-limite {
+        max-width: 295px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .rsvp-boton svg,
+    .rsvp-fecha-limite {
+        animation: none !important;
+    }
+
+}
+
+/* =====================================================
+   DESPEDIDA FINAL DE LOS NOVIOS
+===================================================== */
+
+.despedida-boda {
+    position: relative;
+
+    width: 100%;
+    max-width: 370px;
+
+    margin: 70px auto 0;
+
+    padding: 0 12px 18px;
+
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+/* =====================================================
+   RAMAS ELEGANTES
+===================================================== */
+
+.adorno-despedida {
+    position: relative;
+
+    width: 100%;
+    max-width: 320px;
+    height: 90px;
+
+    margin: 0 auto 18px;
+
+    perspective: 800px;
+    transform-style: preserve-3d;
+}
+
+
+.ramas-despedida {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+
+    color: #baa07b;
+
+    filter:
+        drop-shadow(0 4px 4px rgba(107, 73, 46, 0.1));
+}
+
+
+/* TALLOS */
+
+.tallo-despedida {
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+}
+
+
+/* HOJAS */
+
+.ramas-despedida ellipse {
+    fill: rgba(186, 160, 123, 0.2) !important;
+    stroke: currentColor !important;
+    stroke-width: 1.2;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        movimientoHojaDespedida 4.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* DIFERENTES TIEMPOS PARA LAS HOJAS */
+
+.ramas-despedida ellipse:nth-of-type(2n) {
+    animation-delay: -1.1s;
+}
+
+.ramas-despedida ellipse:nth-of-type(3n) {
+    animation-delay: -2.2s;
+}
+
+
+/* RAMA IZQUIERDA */
+
+.rama-despedida-izquierda {
+    transform-box: fill-box;
+    transform-origin: right center;
+
+    animation:
+        ramaIzquierdaDespedida 5s
+        ease-in-out
+        infinite;
+}
+
+
+/* RAMA DERECHA */
+
+.rama-despedida-derecha {
+    transform-box: fill-box;
+    transform-origin: left center;
+
+    animation:
+        ramaDerechaDespedida 5s
+        ease-in-out
+        infinite;
+}
+
+
+/* ADORNO DEL CENTRO */
+
+.centro-ramas-despedida {
+    color: #c3a37d;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation:
+        centroRamasDespedida 4s
+        ease-in-out
+        infinite;
+}
+
+
+.centro-ramas-despedida path {
+    fill: rgba(195, 163, 125, 0.16) !important;
+    stroke: currentColor !important;
+    stroke-width: 1.2;
+}
+
+
+.centro-ramas-despedida circle {
+    fill: currentColor !important;
+    stroke: none !important;
+}
+
+
+/* =====================================================
+   MENSAJE FINAL
+===================================================== */
+
+.texto-despedida-boda {
+    max-width: 325px;
+
+    margin: 0 auto;
+
+    color: #9e765b;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.35;
+
+    text-align: center;
+}
+
+
+.texto-despedida-boda span {
+    display: block;
+
+    margin-top: 7px;
+}
+
+
+/* CON TODO NUESTRO AMOR */
+
+.frase-amor-despedida {
+    position: relative;
+
+    margin: 24px 0 0;
+
+    color: #967054;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 17px;
+    font-weight: 600;
+
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+
+.frase-amor-despedida::after {
+    content: "";
+
+    display: block;
+
+    width: 55px;
+    height: 1px;
+
+    margin: 11px auto 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(181, 142, 104, 0.85),
+            transparent
+        );
+}
+
+
+/* =====================================================
+   NOMBRES DE LOS NOVIOS
+===================================================== */
+
+.nombres-despedida-boda {
+    margin: 24px 0 0;
+
+    color: #d0a685;
+
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(48px, 14vw, 66px);
+    font-weight: 400;
+    line-height: 1;
+
+    text-shadow:
+        0 4px 8px rgba(119, 79, 49, 0.1);
+
+    animation:
+        nombresDespedidaMovimiento 4.8s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes ramaIzquierdaDespedida {
+
+    0%,
+    100% {
+        transform:
+            rotateZ(0deg)
+            rotateY(-3deg);
+    }
+
+    50% {
+        transform:
+            rotateZ(-1.5deg)
+            rotateY(5deg);
+    }
+
+}
+
+
+@keyframes ramaDerechaDespedida {
+
+    0%,
+    100% {
+        transform:
+            rotateZ(0deg)
+            rotateY(3deg);
+    }
+
+    50% {
+        transform:
+            rotateZ(1.5deg)
+            rotateY(-5deg);
+    }
+
+}
+
+
+@keyframes movimientoHojaDespedida {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.78;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes centroRamasDespedida {
+
+    0%,
+    100% {
+        transform:
+            scale(0.92)
+            rotate(0deg);
+
+        opacity: 0.65;
+    }
+
+    50% {
+        transform:
+            scale(1.1)
+            rotate(90deg);
+
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes nombresDespedidaMovimiento {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .despedida-boda {
+        margin-top: 58px;
+
+        padding-right: 4px;
+        padding-left: 4px;
+    }
+
+    .adorno-despedida {
+        max-width: 290px;
+        height: 82px;
+    }
+
+    .texto-despedida-boda {
+        max-width: 295px;
+
+        font-size: 14px;
+    }
+
+    .frase-amor-despedida {
+        font-size: 16px;
+    }
+
+    .nombres-despedida-boda {
+        font-size: 50px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .rama-despedida,
+    .ramas-despedida ellipse,
+    .centro-ramas-despedida,
+    .nombres-despedida-boda {
+        animation: none !important;
+    }
+
+}
+
+/* =====================================================
+   GALERÍA FINAL DE LOS NOVIOS
+===================================================== */
+
+.final-novios {
+    --final-fondo: #fcfaf6;
+    --final-beige: #d1aa87;
+
+    position: relative;
+
+    width: 100%;
+    height: 620px;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    background-color: var(--final-fondo);
+
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   CONTENEDOR DEL CARRUSEL
+===================================================== */
+
+.final-novios-carrusel {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background-color: #e7e2dc;
+}
+
+
+/* =====================================================
+   CADA FOTOGRAFÍA
+===================================================== */
+
+.final-novios-slide {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(1.03);
+
+    transition:
+        opacity 1.15s ease,
+        visibility 1.15s ease;
+
+    pointer-events: none;
+}
+
+
+/* FOTO VISIBLE */
+
+.final-novios-slide.activo {
+    z-index: 2;
+
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* IMÁGENES */
+
+.final-novios-slide img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transform-origin: center;
+
+    will-change: transform;
+}
+
+
+/* =====================================================
+   MOVIMIENTO DE CADA IMAGEN
+===================================================== */
+
+/* FOTO 1: ACERCAMIENTO SUAVE */
+
+.final-slide-uno.activo img {
+    animation:
+        movimientoFinalUno 4.2s
+        ease-out
+        both;
+}
+
+
+/* FOTO 2: MOVIMIENTO DE DERECHA A IZQUIERDA */
+
+.final-slide-dos.activo img {
+    animation:
+        movimientoFinalDos 4.2s
+        ease-out
+        both;
+}
+
+
+/* FOTO 3: MOVIMIENTO DESDE ABAJO */
+
+.final-slide-tres.activo img {
+    animation:
+        movimientoFinalTres 4.2s
+        ease-out
+        both;
+}
+
+
+/* FOTO 4: MOVIMIENTO DE IZQUIERDA A DERECHA */
+
+.final-slide-cuatro.activo img {
+    animation:
+        movimientoFinalCuatro 4.2s
+        ease-out
+        both;
+}
+
+
+/* =====================================================
+   ANIMACIONES DE LAS FOTOGRAFÍAS
+===================================================== */
+
+@keyframes movimientoFinalUno {
+
+    from {
+        transform:
+            scale(1.02)
+            translateY(0);
+    }
+
+    to {
+        transform:
+            scale(1.11)
+            translateY(-5px);
+    }
+
+}
+
+
+@keyframes movimientoFinalDos {
+
+    from {
+        transform:
+            scale(1.11)
+            translateX(14px);
+    }
+
+    to {
+        transform:
+            scale(1.05)
+            translateX(-10px);
+    }
+
+}
+
+
+@keyframes movimientoFinalTres {
+
+    from {
+        transform:
+            scale(1.08)
+            translateY(14px);
+    }
+
+    to {
+        transform:
+            scale(1.13)
+            translateY(-10px);
+    }
+
+}
+
+
+@keyframes movimientoFinalCuatro {
+
+    from {
+        transform:
+            scale(1.1)
+            translateX(-14px);
+    }
+
+    to {
+        transform:
+            scale(1.05)
+            translateX(10px);
+    }
+
+}
+
+
+/* =====================================================
+   SOMBRA Y PROFUNDIDAD SOBRE LAS FOTOS
+===================================================== */
+
+.final-novios-sombra {
+    position: absolute;
+    z-index: 4;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 30%,
+            transparent 68%,
+            rgba(57, 42, 31, 0.18) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   ONDA SUPERIOR
+===================================================== */
+
+.final-novios-onda {
+    position: absolute;
+    z-index: 7;
+
+    left: 0;
+
+    width: 100%;
+    height: 105px;
+
+    pointer-events: none;
+}
+
+
+.final-novios-onda-superior {
+    top: -1px;
+}
+
+
+.final-onda-fondo {
+    fill: var(--final-fondo);
+}
+
+
+.final-onda-transparente {
+    fill: rgba(255, 255, 255, 0.3);
+}
+
+
+/* =====================================================
+   INDICADORES INFERIORES
+===================================================== */
+
+.final-novios-indicadores {
+    position: absolute;
+    z-index: 8;
+
+    left: 50%;
+    bottom: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    transform: translateX(-50%);
+}
+
+
+.final-novios-punto {
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+
+    background-color: rgba(255, 255, 255, 0.35);
+
+    box-shadow:
+        0 2px 5px rgba(52, 35, 23, 0.18);
+
+    cursor: pointer;
+
+    transition:
+        width 0.35s ease,
+        border-radius 0.35s ease,
+        background-color 0.35s ease;
+}
+
+
+.final-novios-punto.activo {
+    width: 23px;
+
+    border-radius: 10px;
+
+    background-color: #ffffff;
+}
+
+
+/* =====================================================
+   AJUSTAR LA POSICIÓN DE CADA FOTO
+===================================================== */
+
+/*
+Puedes modificar estos valores si alguna cara queda cortada.
+
+Ejemplos:
+object-position: center top;
+object-position: 40% center;
+object-position: center 30%;
+*/
+
+.final-slide-uno img {
+    object-position: center center;
+}
+
+
+.final-slide-dos img {
+    object-position: center center;
+}
+
+
+.final-slide-tres img {
+    object-position: center center;
+}
+
+
+.final-slide-cuatro img {
+    object-position: center center;
+}
+
+
+/* =====================================================
+   COMPUTADORAS
+===================================================== */
+
+@media screen and (min-width: 768px) {
+
+    .final-novios {
+        height: 720px;
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .final-novios {
+        height: 580px;
+    }
+
+    .final-novios-onda {
+        height: 92px;
+    }
+
+    .final-novios-indicadores {
+        bottom: 19px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .final-novios-slide,
+    .final-novios-slide img,
+    .final-novios-punto {
+        animation: none !important;
+        transition: none !important;
+    }
+
+}
+
+/* =====================================================
+   PIE DE PÁGINA MEMORY STUDIOS
+===================================================== */
+
+.memory-footer {
+    position: relative;
+
+    width: 100%;
+
+    padding: 27px 20px 24px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% -30%,
+            rgba(255, 255, 255, 0.1),
+            transparent 45%
+        ),
+        linear-gradient(
+            150deg,
+            #373634 0%,
+            #2d2d2b 100%
+        );
+
+    color: #ffffff;
+
+    box-sizing: border-box;
+    text-align: center;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        inset 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* LUZ DECORATIVA */
+
+.memory-footer::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -145px;
+    left: 50%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(219, 181, 146, 0.15),
+            transparent 70%
+        );
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   MARCA MEMORY STUDIOS
+===================================================== */
+
+.memory-marca {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: fit-content;
+
+    margin: 0 auto 7px;
+
+    color: #ffffff;
+}
+
+
+.memory-nombre {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 0.9;
+
+    letter-spacing: 0.08em;
+}
+
+
+.memory-studios {
+    margin-top: 6px;
+
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+    font-weight: 400;
+
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+
+    opacity: 0.82;
+}
+
+
+/* =====================================================
+   ADORNO
+===================================================== */
+
+.memory-adorno {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    width: 125px;
+
+    margin: 9px auto 10px;
+}
+
+
+.memory-adorno span {
+    display: block;
+
+    width: 45px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(222, 190, 158, 0.75)
+        );
+}
+
+
+.memory-adorno span:last-child {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(222, 190, 158, 0.75),
+            transparent
+        );
+}
+
+
+.memory-adorno i {
+    color: #d8b795;
+
+    font-family: serif;
+    font-size: 9px;
+    font-style: normal;
+
+    animation:
+        memoryDiamante 3.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   FRASES
+===================================================== */
+
+.memory-pregunta {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+.memory-invitacion {
+    position: relative;
+    z-index: 2;
+
+    max-width: 270px;
+
+    margin: 4px auto 14px;
+
+    color: rgba(255, 255, 255, 0.73);
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+
+/* =====================================================
+   BOTÓN DE WHATSAPP
+===================================================== */
+
+.memory-boton-whatsapp {
+    position: relative;
+    z-index: 2;
+
+    min-width: 205px;
+    min-height: 41px;
+
+    padding: 9px 18px;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.82);
+    border-radius: 24px;
+
+    background-color: #ffffff !important;
+    color: #474542 !important;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 0.035em;
+
+    text-decoration: none !important;
+    text-transform: uppercase;
+
+    box-shadow:
+        0 8px 17px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+
+.memory-boton-whatsapp:hover,
+.memory-boton-whatsapp:focus-visible {
+    background-color: #f7eee5 !important;
+    color: #3f3d3a !important;
+
+    transform:
+        translateY(-3px)
+        scale(1.025);
+
+    box-shadow:
+        0 12px 21px rgba(0, 0, 0, 0.25);
+}
+
+
+.memory-boton-whatsapp:focus-visible {
+    outline:
+        3px solid rgba(221, 183, 147, 0.32);
+
+    outline-offset: 4px;
+}
+
+
+/* ICONO WHATSAPP */
+
+.memory-icono-whatsapp {
+    display: block !important;
+
+    width: 18px !important;
+    height: 18px !important;
+
+    flex: 0 0 18px;
+
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 1.5 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+
+    animation:
+        memoryWhatsAppMovimiento 2.8s
+        ease-in-out
+        infinite;
+}
+
+
+.memory-icono-whatsapp path {
+    fill: none !important;
+    stroke: currentColor !important;
+}
+
+
+/* =====================================================
+   TEXTO INFERIOR
+===================================================== */
+
+.memory-derechos {
+    position: relative;
+    z-index: 2;
+
+    margin: 13px 0 0;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 10px;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes memoryDiamante {
+
+    0%,
+    100% {
+        opacity: 0.55;
+
+        transform:
+            scale(0.85)
+            rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            scale(1.15)
+            rotate(90deg);
+    }
+
+}
+
+
+@keyframes memoryWhatsAppMovimiento {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    35% {
+        transform:
+            translateY(-2px)
+            rotate(-5deg);
+    }
+
+    65% {
+        transform:
+            translateY(-2px)
+            rotate(5deg);
+    }
+
+}
+
+
+/* =====================================================
+   CELULARES PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+    .memory-footer {
+        padding:
+            25px
+            15px
+            22px;
+    }
+
+    .memory-nombre {
+        font-size: 26px;
+    }
+
+    .memory-boton-whatsapp {
+        min-width: 195px;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .memory-adorno i,
+    .memory-icono-whatsapp {
+        animation: none !important;
+    }
+
+}
+
+/* =========================================
+   EFECTO DE APARICIÓN AL HACER SCROLL
+========================================= */
+
+.aparecer-scroll {
+    opacity: 0;
+    filter: blur(6px);
+    translate: 0 35px;
+
+    transition:
+        opacity 0.8s ease,
+        filter 0.8s ease,
+        translate 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+
+    will-change: opacity, filter, translate;
+}
+
+/* Cuando bajamos, aparece desde abajo */
+.aparecer-scroll.desde-abajo {
+    translate: 0 35px;
+}
+
+/* Cuando subimos, aparece desde arriba */
+.aparecer-scroll.desde-arriba {
+    translate: 0 -35px;
+}
+
+/* Elemento visible */
+.aparecer-scroll.visible-scroll {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+
+    transition-delay: var(--retraso-scroll, 0ms);
+}
+
+/* Para personas que desactivan las animaciones */
+@media (prefers-reduced-motion: reduce) {
+    .aparecer-scroll,
+    .aparecer-scroll.desde-abajo,
+    .aparecer-scroll.desde-arriba,
+    .aparecer-scroll.visible-scroll {
+        opacity: 1;
+        filter: none;
+        translate: none;
+        transition: none;
+    }
+}
+
+/* Nombres de los padres más grandes */
+.nombres-padres span {
+    display: block;
+    font-size: clamp(25px, 2vw, 28px);
+    line-height: 1.5;
+}
