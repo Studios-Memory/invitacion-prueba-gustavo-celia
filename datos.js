@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 window.DATOS_INVITACION = {
   // Tipo: "boda" o "graduacion"
   tipo: "boda",
@@ -75,7 +74,6 @@ padres: {
     descripcion:
       "Nos complace invitarte a ser parte de nuestro gran día."
   }
-=======
 window.DATOS_INVITACION = {
   // Tipo: "boda" o "graduacion"
   tipo: "boda",
@@ -152,5 +150,4 @@ padres: {
     descripcion:
       "Nos complace invitarte a ser parte de nuestro gran día."
   }
->>>>>>> 010af2c510cfc2f29bcf32870e4eef748b4bfec6
 };

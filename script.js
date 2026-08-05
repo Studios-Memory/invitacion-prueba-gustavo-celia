@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ==================================
    DATOS MODIFICABLES DE LOS NOVIOS
 ================================== */
@@ -1136,7 +1135,6 @@ colocarTexto(
     document.title = `${datos.titulo} | ${datos.nombres}`;
 });
 
-=======
 /* ==================================
    DATOS MODIFICABLES DE LOS NOVIOS
 ================================== */
@@ -1234,20 +1232,7 @@ function actualizarBotonMusica() {
    ABRIR EL SOBRE
 ================================== */
 
-botonAbrir.addEventListener("click", () => {
 
-    botonAbrir.disabled = true;
-
-    musicaFondo.play()
-        .then(() => {
-            actualizarBotonMusica();
-        })
-        .catch((error) => {
-            console.log(
-                "La música no pudo reproducirse:",
-                error
-            );
-        });
 
     portadaSobre.classList.add("abierta");
 
@@ -2274,4 +2259,3 @@ colocarTexto(
     document.title = `${datos.titulo} | ${datos.nombres}`;
 });
 
->>>>>>> 010af2c510cfc2f29bcf32870e4eef748b4bfec6
